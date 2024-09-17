@@ -1,59 +1,62 @@
 body {
-    background-color:#dedede;
-    font-family:Arial, sans-serif;
+  background-color:#dedede;
+  font-family:Arial, sans-serif;
 }
 h1 { 
-    color:red;
-    font-family: "Press Start 2P", sans-serif;
-    border-bottom: 1px solid blue;
-    }
+  color:red;
+  font-family: "Press Start 2P", sans-serif;
+  border-bottom: 1px solid blue;
+}
 h2 {
-    color:blue;
-    margin-left:50px;
+  color:blue;
+  margin-left:50px;
 }
 h3 {
-    color:blue;
-    margin-left:50px;
+  color:blue;
+  margin-left:50px;
 }
 footer {
-    background-color:#AFAFE6;
+  background-color:#AFAFE6;
 }
 p {
-    margin-left:100px;
+  margin-left:100px;
+  border: 2rem;
 }
 blockquote { 
-    background-color: lightgray;
-    padding: 1rem;
+  background-color: lightgray;
+  padding: 1rem;
     }
 .float-right {
-    float:right;
-    margin:12px;
+  float:right;
+  margin:12px;
 }
 a:link { 
-    color: #f60005 ;
-    text-decoration: none;
-  }
-  
-  a:visted {
-    color: #000097;
-    text-decoration: none;
-  }
-  
-  a:focus {
-    outline: solid 2px #468CBE;
-    text-decoration: underline;
-    color: green;
-  }
-  
-  a:hover { 
-    color: #468CBE;
-    text-decoration: underline;
-  }
-  
-  a:active {
-    color: #BF4040;
-    position: relative;
-    top: 3px;
-    text-decoration: none;
-    outline: 0;
-  }
+  color: #f60005 ;
+  text-decoration: none;
+}
+a:visted {
+  color: #000097;
+  text-decoration: none;
+}
+a:focus {
+  outline: solid 2px #468CBE;
+  text-decoration: underline;
+  color: green;
+}
+a:hover { 
+  color: #468CBE;
+  text-decoration: underline;
+}
+a:active {
+  color: #BF4040;
+  position: relative;
+  top: 3px;
+  text-decoration: none;
+  outline: 0;
+}
+main {
+  border: 1px solid black;
+  margin: 0 auto;
+  width: 80vw;
+}
+main, header, footer {margin: 0 auto; }

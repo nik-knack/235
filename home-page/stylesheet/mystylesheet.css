@@ -1,14 +1,46 @@
 body {
   font-family: "Itim", Verdana, sans-serif;
-  background-color: #fdf7df;
+  background-color: #fffcf2;
   color: #2a3d45;
 }
+
 h1 {
-  color: #fd0727; 
+  color: #fd0727;
 }
+
 h2 {
   color: #fe6d66;
-} 
+}
+
 h3 {
   color: #7f9106;
+}
+
+a:link {
+  color: #7f9106;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #fe6d66;
+  text-decoration: none;
+}
+
+a:focus {
+  outline: solid 2px #ffca1e;
+  text-decoration: underline;
+  color: green;
+}
+
+a:hover {
+  color: #fd0727;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #d7d102;
+  position: relative;
+  top: 3px;
+  text-decoration: none;
+  outline: 0;
 }

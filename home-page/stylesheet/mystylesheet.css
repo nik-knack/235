@@ -1,19 +1,45 @@
 body {
   font-family: "Itim", Verdana, sans-serif;
+  font-size: 1.5em;
   background-color: #fffcf2;
   color: #2a3d45;
 }
 
 h1 {
   color: #fd0727;
+  font-size: 3em;
 }
 
 h2 {
   color: #fe6d66;
+  font-size: 2em;
+  margin-left: 200px;
 }
 
 h3 {
   color: #7f9106;
+}
+
+p {
+  width: 950px;
+  padding: 20px;
+  margin-left: 250px;
+  text-align: justify;
+}
+
+#header {
+  text-align: center;
+}
+
+#footer {
+  background-color: #ffece0;
+  margin-left: 200px;
+  margin-right: 200px;
+  text-align: center;
+}
+
+.indent {
+  margin-left: 250px;
 }
 
 a:link {
@@ -22,7 +48,7 @@ a:link {
 }
 
 a:visited {
-  color: #fe6d66;
+  color: #d7d102;
   text-decoration: none;
 }
 
@@ -38,9 +64,15 @@ a:hover {
 }
 
 a:active {
-  color: #d7d102;
+  color: #fe6d66;
   position: relative;
   top: 3px;
   text-decoration: none;
   outline: 0;
+}
+
+.itim-regular {
+  font-family: "Itim", Verdana, sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }

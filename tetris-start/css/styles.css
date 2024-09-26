@@ -1,1 +1,17 @@
 /* Do everything in this file */
+h2{
+    border-bottom: 1px solid red;
+    clear: left;
+}
+figure {
+    float: right;
+    width: 40%;   
+    margin-left: 5em
+}
+figure img {
+    width: 550px;
+}
+div.tet {
+    float: left;
+    width: 100%;
+}

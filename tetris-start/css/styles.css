@@ -1,7 +1,7 @@
 /* Do everything in this file */
-h2{
+h2, h3{
     border-bottom: 1px solid red;
-    clear: left;
+    clear: both;
 }
 figure {
     float: right;
@@ -13,5 +13,13 @@ figure img {
 }
 div.tet {
     float: left;
-    width: 100%;
+    width: 40%;
+    border: 1px solid purple;
+}
+footer {
+    clear: both;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;   
 }

@@ -1,0 +1,26 @@
+main {
+    margin: 0 10%;
+}
+h1 {
+    display: flex;
+    justify-content: left;
+}
+h2 {
+    display: flex;
+    justify-content: left;
+}
+#content {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    
+}
+/* .images {
+    display: flex;
+    justify-content: center;
+} */
+#text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}

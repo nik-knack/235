@@ -1,0 +1,63 @@
+body {
+    margin: 0 5%;
+    background-color: #e7efcf;
+    color: #333;
+}
+header {
+    text-align: center;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+}
+.navigation {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.welcome-section, .rules-section, .payment-section, .bonus-section {
+    padding: 20px;
+    background-color: #f0f8ea;
+    border-radius: 10px;
+}
+.welcome-section h3, .rules-section h3, .payment-section h3, .bonus-section h3 {
+    font-size: 18px;
+    color: #6a8f63;
+    margin-bottom: 10px;
+}
+.welcome-section p, .rules-section p, .payment-section p, .bonus-section p {
+    font-size: 14px;
+    color: #555;
+}   
+.welcome-image, .rules-image {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.welcome-images img, .rules-image img {
+    width: 48%;
+    border-radius: 5px;
+}
+.rules-section ul {
+    list-style-type: none;
+    font-size: 14px;
+    color: #555;
+}
+.rules-section ul li {
+    margin-bottom: 10px;
+}
+p {
+    font-family: "Sono", sans-serif;
+}
+h2 {
+    font-family: "Sono", sans-serif;
+}
+ul {
+    font-family: "Sono", sans-serif;
+}
+ol {
+    font-family: "Sono", sans-serif;
+}

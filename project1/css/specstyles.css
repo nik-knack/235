@@ -6,23 +6,62 @@ body {
 header {
     text-align: center;
 }
+
+.header-image {
+    width: 100%;
+}
+
+.nav-image {
+    width: 100%;
+}
+
+.navigation {
+    list-style-type: none; 
+    margin: 0;
+    padding: 0;
+    display: flex; 
+    justify-content: center; 
+}
+
+.navigation li {
+    margin: 0 20px; /* Add space between the items */
+    font-size: 20px;
+    font-weight: bold;
+    /* cursor: pointer; */
+    text-transform: uppercase;
+}
+
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-gap: 50px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 8px;
+
 }
-.navigation {
+
+.header-section{
     grid-column: 1 / -1;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
+    grid-row: 1;
 }
+
+.navigation-bar{
+    grid-column: 1 / -1;
+    grid-row: 2;
+    padding: 10px;
+    text-align: center;
+}
+
+.nav-image {
+    z-index: -1;
+}
+
 .welcome-section {
     grid-column: 1 / 8;
 }
+
 .payment-section {
     grid-column: 1 / 4;
+
 }
 .bonus-section {
     grid-column: 5 / 8;
@@ -62,15 +101,6 @@ header {
 .rules-section ul li {
     margin-bottom: 10px;
 }
-p {
-    font-family: "Sono", sans-serif;
-}
-h2 {
-    font-family: "Sono", sans-serif;
-}
-ul {
-    font-family: "Sono", sans-serif;
-}
-ol {
+* {
     font-family: "Sono", sans-serif;
 }

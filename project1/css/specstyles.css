@@ -3,9 +3,6 @@ body {
     background-color: #e7efcf;
     color: #333;
 }
-header {
-    text-align: center;
-}
 
 .header-image {
     width: 100%;
@@ -20,85 +17,98 @@ header {
     margin: 0;
     padding: 0;
     display: flex; 
-    justify-content: center; 
+    justify-content: space-around; 
 }
 
 .navigation li {
     margin: 0 20px; /* Add space between the items */
     font-size: 20px;
     font-weight: bold;
-    /* cursor: pointer; */
+    cursor: pointer; 
     text-transform: uppercase;
+    line-height: 47px;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(8, 1fr);
-    gap: 8px;
-
+.navigation-bar
+{
+    background-image: url("../media/spec_media/nav_image_copy.jpg");
 }
 
-.header-section{
-    grid-column: 1 / -1;
-    grid-row: 1;
+.flex-container {
+    display: flex;
+    flex-direction: column;
 }
 
-.navigation-bar{
-    grid-column: 1 / -1;
-    grid-row: 2;
-    padding: 10px;
-    text-align: center;
+.header-section { 
+    justify-content: center;
 }
-
-.nav-image {
-    z-index: -1;
-}
-
+    
 .welcome-section {
-    grid-column: 1 / 8;
+    display: flex;
+    flex-direction: row;
 }
 
-.payment-section {
-    grid-column: 1 / 4;
-
+.welcome-image {
+    display: flex;
+    justify-content: flex-start;
+    width:100%;
 }
-.bonus-section {
-    grid-column: 5 / 8;
+
+.welcome-content {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .rules-section {
-    grid-column: 1 / 8;
+    display: flex;
+    flex-direction: row-reverse;    
 }
-.welcome-section, .rules-section, .payment-section, .bonus-section {
-    padding: 20px;
-    background-color: #fefefc;;
-    border-radius: 10px;
+
+.rules-image {
+    display: flex;
+    justify-content: flex-end;
 }
-.welcome-section h3, .rules-section h3, .payment-section h3, .bonus-section h3 {
-    font-size: 24px;
-    color: #6a8f63;
-    margin-bottom: 10px;
+
+.rules-content{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 60rem;
 }
+
+.header-image-group {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    width: 100%;
+}
+
+.lower-section {
+    display: flex;
+    flex-direction: row;
+}
+
 .welcome-section p, .rules-section ol, .payment-section p, .bonus-section p {
+    padding: 20px;
+    background-color: #fefefc;
     font-size: 20px;
     color: #555;
-}   
-.welcome-image, .rules-image {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
 }
-.welcome-images img, .rules-image img {
-    width: 48%;
-    border-radius: 5px;
+footer p {
+    color: #9ca684;
 }
-.rules-section ul {
-    list-style-type: none;
-    font-size: 14px;
-    color: #555;
+h2 {
+    font-size: 24px;
+    color: #546447;
+    margin-bottom: 10px;
+}  
+ol {
+    list-style-position: inside;
 }
-.rules-section ul li {
+ul {
+    color: #30482e;
+}
+.rules-section ol li {
     margin-bottom: 10px;
 }
 * {

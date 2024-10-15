@@ -10,13 +10,13 @@
     <title>Spec Site</title>
 </head>
 <body>
-    <div class="grid-container">
-        <header class="header-section grid item">
+    <div class="flex-container">
+        <header class="header-section">
             <img class="header-image" src="media/spec_media/header_image.jpg" alt="header">
         </header>
         
-        <div class="navigation-bar grid-item">
-            <img class="nav-image" src="media/spec_media/nav_image.jpg" alt="">
+        <div class="navigation-bar">
+            <!-- <img class="nav-image" src="media/spec_media/nav_image.jpg" alt=""> -->
             <ul class="navigation">
                 <li>Characters</li>
                 <li>Forms</li>
@@ -24,22 +24,26 @@
             </ul>
         </div>
 
-        <div class="welcome-section grid-item">
-            <img class="welcome-image" src="media/spec_media/welcome_image.jpg" alt="welcome image">
-            <h2>WELCOME</h2>
+        <div class="welcome-section">
+            <div class="header-image-group">
+                <h2 class="header">WELCOME</h2>
+                <img class="image" class="welcome-image" src="media/spec_media/welcome_image.jpg" alt="welcome image">
+            </div>
             <!-- <img class="welcome-border-image" src="media/spec_media/welcome_border_image.jpg" alt=""> -->
-            <p>
+            <p class="welcome-content">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas aliquam fugit 
                 adipisci commodi quos nostrum ab consequuntur doloremque unde doloribus animi culpa, 
                 enim temporibus, repellat exercitationem officiis. Temporibus, corrupti molestiae.
             </p>
         </div>
 
-        <div class="rules-section grid-item">
-            <img class="rules-image" src="media/spec_media/rules_image.jpg" alt="rules image">
-            <h2>RULES</h2>
+        <div class="rules-section">
+            <div class="header-image-group">
+                <h2 class="header">RULES</h2>
+                <img class="image" class="rules-image" src="media/spec_media/rules_image.jpg" alt="rules image">
+            </div>
             <!-- <img class="rules-border-image" src="media/spec_media/rules_border_image.jpg" alt=""> -->
-            <ol>
+            <ol class="rules-content">
                 <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem ipsum dolor sit amet.</li>
@@ -49,19 +53,20 @@
             </ol>
         </div>
 
-        <div class="payment-section grid-item">
-            <img class="payment-image" src="media/spec_media/payment_image.jpg" alt="payment image">
-            <h2>PAYMENT</h2>
-            <!-- <img class="payment-border-image" src="media/spec_media/payment_border_image.jpg" alt=""> -->
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, ut.</p>
-        </div>
+        <div class="lower-section">
+            <div class="payment-section">
+                <h2>PAYMENT</h2>
+                <!-- <img class="payment-border-image" src="media/spec_media/payment_border_image.jpg" alt=""> -->
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, ut.</p>
+                <img class="payment-image" src="media/spec_media/payment_image.jpg" alt="payment image">
+            </div>
 
-        <div class="bonus-section grid-item">
-            <!-- <img class="bonus-border-image" src="media/spec_media/bonus_border_image.jpg" alt="bonus image"> -->
-            <h2>BONUS</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus deserunt asperiores cupiditate minus quos omnis.</p>
+            <div class="bonus-section">
+                <!-- <img class="bonus-border-image" src="media/spec_media/bonus_border_image.jpg" alt="bonus image"> -->
+                <h2>BONUS</h2>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus deserunt asperiores cupiditate minus quos omnis.</p>
+            </div>
         </div>
-
         <footer>
             <p></p>
         </footer>

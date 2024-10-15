@@ -58,6 +58,16 @@ if("fred"){
 	console.log("false");
 }
 
+// All of these are false values, excepting the last one - it turns out that "false" is true
+console.log(0 == false ? "0 is false" : "0 is true");
+console.log(-0 == false ? "-0 is false" : "-0 is true");
+console.log(false == false ? "false is false" : "false is true");
+console.log(null == false ? "null is false" : "null is true");
+console.log(undefined == false ? "NaN is false" : "NaN is true");
+console.log("" == false ? "\"\" is false" : "\"\" is true");
+console.log('' == false ? "\'\' is false" : "\'\' is true");
+console.log(new Boolean(false) == false ? "\"new Boolean(false)\" is false" : "\"new Boolean(false)\" is true");
+console.log("false" == false ? "\"false\" is false" : "\"false\" is true");
 </script>
 </body>
 </html>

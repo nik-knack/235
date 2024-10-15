@@ -32,9 +32,10 @@ body {
 .navigation-bar
 {
     background-image: url("../media/spec_media/nav_image_copy.jpg");
+    margin: 50px 0px;
 }
 
-.flex-container {
+.upper-section {
     display: flex;
     flex-direction: column;
 }
@@ -46,17 +47,20 @@ body {
 .welcome-section {
     display: flex;
     flex-direction: row;
+    flex: auto;
+    margin-bottom: 20px;
 }
 
 .welcome-image {
     display: flex;
     justify-content: flex-start;
-    width:100%;
+
 }
 
-.welcome-content {
+.welcome-text {
     display: flex;
     justify-content: flex-end;
+    width: 50rem;
 }
 
 .rules-section {
@@ -69,31 +73,96 @@ body {
     justify-content: flex-end;
 }
 
-.rules-content{
+.rules-text{
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    width: 60rem;
+    width: 50rem;
 }
 
 .header-image-group {
     display: flex;
     flex-direction: column;
-    align-items:center;
-    width: 100%;
+    width: 25rem;
+}
+
+/* .header {
+    letter-spacing: 2rem;
+    align-self: center;
+} */
+
+h2 {
+    letter-spacing: 2rem;
 }
 
 .lower-section {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    margin-top: 40px;
 }
 
-.welcome-section p, .rules-section ol, .payment-section p, .bonus-section p {
-    padding: 20px;
+.payment-section {
+    justify-content: flex-start;
+    width: 560px;   
+}
+
+.bonus-section {
+    justify-content: flex-end;
+    width: 560px;
+}
+
+.payment-image {
+    width: 96%;
+}
+
+.welcome-section p{
+    background-image: url("../media/spec_media/welcome_border_image.jpg");
+    background-repeat: no-repeat;
+    background-size: 28px;
+}
+
+.rules-section ol{
+    background-image: url("../media/spec_media/rules_border_image.jpg");
+    background-repeat: no-repeat;
+    background-size: 35px;
+    background-position-x: right;
+}
+
+.payment-section p {
+    background-image: url("../media/spec_media/payment_border_image.jpg");
+    background-repeat: no-repeat;
+    background-size: 560px;
+}
+
+.bonus-section p {
+    background-image: url("../media/spec_media/bonus_border_image.jpg");
+    background-repeat: no-repeat;
+    background-size: 560px;
+}
+
+.welcome-section p, .rules-section ol{
+    padding: 40px 60px;
+    margin: 10px;
     background-color: #fefefc;
-    font-size: 20px;
+    font-size: 20px;    
+    line-height: 1.35;
+    letter-spacing: 3px;
+    word-spacing: 5px;
     color: #555;
 }
+
+.payment-section p, .bonus-section p {
+    padding: 60px 40px 40px 40px;
+    margin: 10px;
+    background-color: #fefefc;
+    font-size: 20px;    
+    line-height: 1.35;
+    letter-spacing: 3px;
+    word-spacing: 5px;
+    color: #555;
+}
+
 footer p {
     color: #9ca684;
 }

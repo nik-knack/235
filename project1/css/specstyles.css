@@ -14,8 +14,7 @@ body {
 }
 
 /* background image */
-#navigation-bar
-{
+nav {
     background-image: url("../media/spec_media/nav_image_copy.jpg");
     margin: 50px 0px;
 }
@@ -28,9 +27,9 @@ body {
     display: flex;
     justify-content: space-around;
 }
-ul {
+/* ul {
     color: #30482e;
-}
+} */
 #navigation li {
     margin: 0 20px;
     font-size: 25px;
@@ -39,6 +38,22 @@ ul {
     cursor: pointer;
     text-transform: uppercase;
     line-height: 47px;
+}
+a:link {
+    color: #30482e;
+    text-decoration-line: none;
+}
+a:visited {
+    color: #b1762b;
+}
+a:focus {
+    color: #92ae40;
+}
+a:hover {
+    color: #768d65;
+}
+a:active {
+    color: #9a5619;
 }
 
 /* general header formatting */

@@ -10,72 +10,74 @@
     <title>Spec Site</title>
 </head>
 <body>
-    <!-- upper section flexbox goes from header to rules section. -->
-    <div id="upper-section">
-        <header id="banner-section">
-            <img id="banner-image" src="media/spec_media/header_image.jpg" alt="header">
-        </header>
-        
-        <!-- will include fragment links-->
-        <div id="navigation-bar">
-            <ul id="navigation">
-                <li>Characters</li>
-                <li>Forms</li>
-                <li>Examples</li>
-            </ul>
-        </div>
+    <main>
+        <!-- upper section flexbox goes from header to rules section. -->
+        <section id="upper-section">
+            <header id="banner-section">
+                <img id="banner-image" src="media/spec_media/header_image.jpg" alt="header">
+            </header>
+            
+            <!-- will include fragment links-->
+            <nav>
+                <ul id="navigation">
+                    <li><a href="#welcome-section">Characters</a></li>
+                    <li><a href="#rules-section">Forms</a></li>
+                    <li><a href="#lower-section">Examples</a></li>
+                </ul>
+            </nav>
 
-        <!-- welcome section flexbox-->
-        <div id="welcome-section">
-            <!-- header and image flexbox to stack header on top of image-->
-            <div class="header-image-group">
-                <h2 class="header">WELCOME</h2>
-                <img class="image" id="welcome-image" src="media/spec_media/welcome_image.jpg" alt="welcome image">
+            <!-- welcome section flexbox-->
+            <div id="welcome-section">
+                <!-- header and image flexbox to stack header on top of image-->
+                <div class="header-image-group">
+                    <h2 class="header">WELCOME</h2>
+                    <img class="image" id="welcome-image" src="media/spec_media/welcome_image.jpg" alt="welcome image">
+                </div>
+                <p id="welcome-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt iure similique quaerat incidunt magni animi assumenda, 
+                    doloremque earum dolore suscipit est itaque saepe ullam possimus impedit exercitationem fuga! Quam quae incidunt odit 
+                    quis odio laborum voluptatem asperiores ipsam vitae hic dolorem, rerum autem similique enim suscipit alias est neque 
+                    recusandae et itaque illo saepe reiciendis?
+                </p>
             </div>
-            <p id="welcome-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt iure similique quaerat incidunt magni animi assumenda, 
-                doloremque earum dolore suscipit est itaque saepe ullam possimus impedit exercitationem fuga! Quam quae incidunt odit 
-                quis odio laborum voluptatem asperiores ipsam vitae hic dolorem, rerum autem similique enim suscipit alias est neque 
-                recusandae et itaque illo saepe reiciendis?
-            </p>
-        </div>
 
-        <!-- rules section flexbox -->
-        <div id="rules-section">
-            <!-- header and image flexbox to stack header on top of image-->
-            <div class="header-image-group">
-                <h2 class="header">RULES</h2>
-                <img class="image" id="rules-image" src="media/spec_media/rules_image.jpg" alt="rules image">
+            <!-- rules section flexbox -->
+            <div id="rules-section">
+                <!-- header and image flexbox to stack header on top of image-->
+                <div class="header-image-group">
+                    <h2 class="header">RULES</h2>
+                    <img class="image" id="rules-image" src="media/spec_media/rules_image.jpg" alt="rules image">
+                </div>
+                    <ol id="rules-text">
+                        <li>Lorem ipsum dolor sit, amet consectetur.</li>
+                        <li>Lorem ipsum dolor, sit amet consectetur.</li>
+                        <li>Lorem ipsum, dolor sit amet consectetur.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quibusdam illo qui, atque rem sint adipisci aperiam eum voluptatem numquam!</li>
+                    </ol>
             </div>
-                <ol id="rules-text">
-                    <li>Lorem ipsum dolor sit, amet consectetur.</li>
-                    <li>Lorem ipsum dolor, sit amet consectetur.</li>
-                    <li>Lorem ipsum, dolor sit amet consectetur.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quibusdam illo qui, atque rem sint adipisci aperiam eum voluptatem numquam!</li>
-                </ol>
-        </div>
-    </div>
+        </section>
 
-    <!-- lower section flexbow includes payment and bonus section -->
-    <div id="lower-section">
-        <!-- payment section flexbox -->
-        <div id="payment-section">
-            <h2 class="header">PAYMENT</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, ut.</p>
-            <img id="payment-image" src="media/spec_media/payment_image.jpg" alt="payment image">
-        </div>
+        <!-- lower section flexbow includes payment and bonus section -->
+        <section id="lower-section">
+            <!-- payment section flexbox -->
+            <div id="payment-section">
+                <h2 class="header">PAYMENT</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, ut.</p>
+                <img id="payment-image" src="media/spec_media/payment_image.jpg" alt="payment image">
+            </div>
 
-        <!-- bonus section flexbox-->
-        <div id="bonus-section">
-            <h2 class="header">BONUS</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit doloribus ullam sapiente, sequi similique 
-                dolore exercitationem accusamus aperiam esse harum repellendus et cumque delectus eveniet omnis placeat 
-                quae rem illo soluta earum nesciunt. Modi, omnis?
-            </p>
-        </div>
-    </div>
+            <!-- bonus section flexbox-->
+            <div id="bonus-section">
+                <h2 class="header">BONUS</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit doloribus ullam sapiente, sequi similique 
+                    dolore exercitationem accusamus aperiam esse harum repellendus et cumque delectus eveniet omnis placeat 
+                    quae rem illo soluta earum nesciunt. Modi, omnis?
+                </p>
+            </div>
+        </section>
+    </main>
     <footer>
             <p>Thread by Demonclogies</p>
     </footer>

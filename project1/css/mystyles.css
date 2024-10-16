@@ -1,0 +1,9 @@
+#wrapper {
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-columns: repeat(14, 1fr);
+}
+
+#upper-section {
+    grid-area: 1 / 1;
+}

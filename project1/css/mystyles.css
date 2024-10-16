@@ -1,9 +1,192 @@
+/* general page formatting */
+body {
+    margin: 0 5%;
+    background-color: #e7efcf;
+    color: #333;
+}
+
+* {
+    font-family: "Sono", sans-serif;
+}
+
 #wrapper {
     display: grid;
-    grid-template-rows: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr), 1fr;
     grid-template-columns: repeat(14, 1fr);
 }
 
-#upper-section {
-    grid-area: 1 / 1;
+#banner-section {
+    grid-area: 1 / 2 / 3 / 14;
+}
+
+#banner-image {
+    width: 100%;
+}
+
+nav {
+    grid-area: 3 / 2 / 4 / 14;
+    margin: 5px 0px;
+    background-image: url("../media/spec_media/nav_image_copy.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+main {
+    grid-area: 3 / 2 / 9 / 14;
+    display: grid;
+    margin-top: 80px;
+
+}
+
+footer {
+    grid-area: 9 / 2 / 10 / 14;
+}
+
+#welcome-section {
+    display: flex;
+    flex: 1 1 auto;
+    margin-bottom: 5px;
+}
+
+.welcome-header-image {
+    flex: 1;
+}
+
+#welcome-image {
+    width: 100%;
+}
+
+#welcome-text {
+    flex: 2;
+}
+
+#rules-section {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.rules-header-image {
+    flex: 1;
+}
+
+#rules-image {
+    width: 100%;
+}
+
+#rules-text {
+    flex: 2;
+}
+
+#lower-section {
+    display: flex;
+    flex-direction: row;
+}
+
+#payment-section {
+    flex: 1;
+}
+
+#payment-image {
+    width: 100%;
+}
+
+#bonus-section {
+    flex: 1;
+}
+
+/* text-section formatting */
+p,
+ol {
+    margin: 10px;
+    padding: 40px;
+    background-color: #fefefc;
+    font-size: 20px;
+    font-weight: 550;
+    line-height: 1.35;
+    letter-spacing: 3px;
+    word-spacing: 5px;
+    color: #546447;
+    text-transform: uppercase;
+    list-style-position: inside;
+
+}
+
+
+/* navigation formatting */
+#navigation {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+#navigation li {
+    margin: 0 20px;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    line-height: 47px;
+}
+
+a:link {
+    color: #30482e;
+    text-decoration-line: none;
+}
+
+a:visited {
+    color: #b1762b;
+}
+
+a:focus {
+    color: #92ae40;
+}
+
+a:hover {
+    color: #768d65;
+}
+
+a:active {
+    color: #9a5619;
+}
+
+footer p {
+    background-color: transparent;
+    color: #9ca684;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 25px;
+    word-spacing: 30px;
+    letter-spacing: 15px;
+}
+
+/* general header formatting */
+h2 {
+    font-size: 30px;
+    color: #546447;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 10px;
+}
+
+/* specific header formatting */
+#welcome-section h2,
+#rules-section h2 {
+    letter-spacing: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 30px;
+}
+
+#payment-section h2,
+#bonus-section h2 {
+    letter-spacing: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 50px;
+}
+
+/* header and image flexbox */
+h2 {
+    line-height: 1rem;
 }

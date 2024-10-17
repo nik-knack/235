@@ -22,17 +22,6 @@ body {
     }
 }
 
-@media screen and (min-width: 760px) {
-    #wrapper {
-        height: 96vh;
-        grid-template-rows: 1fr 10fr 1fr;
-        grid-template-columns: 20% 1fr 20%;
-        grid-template-areas: "header header header"
-            "navbar content sidebar"
-            "footer footer footer";
-    }
-}
-
 #banner-section {
     grid-area: 1 / 2 / 3 / 14;
 }

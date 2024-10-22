@@ -5,14 +5,14 @@ body {
     color: #333;
 }
 
-* { 
+* {
     font-family: "Sono", sans-serif;
 }
 
 #wrapper {
     display: grid;
     grid-template-columns: 40px 3fr 20px repeat(3, 1fr) 20px 3fr 40px;
-    grid-template-rows: 24% 40px 60px 40px 18% 40px 20% 60px 9% 20px 8% 60px;
+    grid-template-rows: 24% 40px 60px 40px 18% 40px 26% 60px 9% 20px 8% 60px;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     max-width: 1200px;
@@ -82,8 +82,21 @@ footer {
     width: 100%;
 }
 
-p,
-ol {
+#rules-text {
+    margin: 10px;
+    padding: 20px 40px 20px 60px;
+    background-color: #fefefc;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: 3px;
+    word-spacing: 5px;
+    color: #A3325C;
+    list-style-position: outside;
+    text-align: justify;
+}
+
+#welcome-text {
     margin: 10px;
     padding: 40px;
     background-color: #fefefc;

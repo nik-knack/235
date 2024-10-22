@@ -11,9 +11,12 @@ body {
 
 #wrapper {
     display: grid;
-    grid-template-rows: repeat(8, 1fr), 1fr;
-    grid-template-columns: repeat(14, 1fr);
+    grid-template-columns: 40px 3fr 20px repeat(3, 1fr) 20px 3fr 40px;
+    grid-template-rows: 24% 40px 60px 40px 18% 40px 20% 60px 9% 20px 8% 60px;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
     max-width: 1200px;
+    max-height: 2100px;
 }
 
 @media screen and (min-width: 1000px) {
@@ -23,7 +26,7 @@ body {
 }
 
 #banner-section {
-    grid-area: 1 / 2 / 3 / 14;
+    grid-area: 1 / 2 / 2 / 9;
 }
 
 #banner-image {
@@ -31,22 +34,40 @@ body {
 }
 
 nav {
-    grid-area: 3 / 2 / 4 / 14;
+    grid-area: 3 / 2 / 4 / 9;
     margin: 5px 0px;
     background-image: url("../media/spec_media/nav_image_copy.jpg");
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-main {
-    grid-area: 3 / 2 / 9 / 14;
-    display: grid;
-    margin-top: 80px;
+#welcome-header-image {
+    grid-area: 5 / 2 / 6 / 3;
+    width: 100%;
+}
 
+#welcome-text {
+    grid-area: 5 / 4 / 6 / 9;
+}
+
+#rules-text {
+    grid-area: 7 / 2 / 8 / 7;
+}
+
+#rules-header-image {
+    grid-area: 7 / 8 / 8 / 9;
+}
+
+#payment-section {
+    grid-area: 9 / 2 / 12 / 5;
+}
+
+#bonus-section {
+    grid-area: 9 / 6 / 12 / 9;
 }
 
 footer {
-    grid-area: 9 / 2 / 10 / 14;
+    grid-area: 12 / 2 / 13 / 9;
 }
 
 #welcome-section {
@@ -55,7 +76,7 @@ footer {
     margin-bottom: 5px;
 }
 
-.welcome-header-image {
+#welcome-header-image {
     flex: 1;
 }
 
@@ -72,7 +93,7 @@ footer {
     flex-direction: row-reverse;
 }
 
-.rules-header-image {
+#rules-header-image {
     flex: 1;
 }
 

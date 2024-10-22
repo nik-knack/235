@@ -1,11 +1,11 @@
 /* general page formatting */
 body {
     margin: 0 5%;
-    background-color: #efd4cf;
+    background-color: #f1d4c3;
     color: #333;
 }
 
-* {
+* { 
     font-family: "Sono", sans-serif;
 }
 
@@ -92,7 +92,7 @@ ol {
     line-height: 1.25;
     letter-spacing: 3px;
     word-spacing: 5px;
-    color: #a1584a;
+    color: #A3325C;
     list-style-position: inside;
 }
 
@@ -117,12 +117,12 @@ ol {
 }
 
 a:link {
-    color: #30482e;
+    color: #FF6D7C;
     text-decoration-line: none;
 }
 
 a:visited {
-    color: #b1762b;
+    color: #559793;
 }
 
 a:focus {
@@ -130,11 +130,11 @@ a:focus {
 }
 
 a:hover {
-    color: #768d65;
+    color: #F3DF85;
 }
 
 a:active {
-    color: #9a5619;
+    color: #FF9255;
 }
 
 footer p {
@@ -150,7 +150,7 @@ footer p {
 /* general header formatting */
 h2 {
     font-size: 30px;
-    color: #fe6d66;
+    color: #FF6D7C;
     margin-bottom: 20px;
     text-align: center;
     line-height: 1rem;

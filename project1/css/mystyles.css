@@ -1,7 +1,7 @@
 /* general page formatting */
 body {
     margin: 0 5%;
-    background-color: #e7efcf;
+    background-color: #efd4cf;
     color: #333;
 }
 
@@ -70,73 +70,30 @@ footer {
     grid-area: 12 / 2 / 13 / 9;
 }
 
-#welcome-section {
-    display: flex;
-    flex: 1 1 auto;
-    margin-bottom: 5px;
-}
-
-#welcome-header-image {
-    flex: 1;
-}
-
 #welcome-image {
     width: 100%;
-}
-
-#welcome-text {
-    flex: 2;
-}
-
-#rules-section {
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-#rules-header-image {
-    flex: 1;
 }
 
 #rules-image {
     width: 100%;
 }
 
-#rules-text {
-    flex: 2;
-}
-
-#lower-section {
-    display: flex;
-    flex-direction: row;
-}
-
-#payment-section {
-    flex: 1;
-}
-
 #payment-image {
     width: 100%;
 }
 
-#bonus-section {
-    flex: 1;
-}
-
-/* text-section formatting */
 p,
 ol {
     margin: 10px;
     padding: 40px;
     background-color: #fefefc;
-    font-size: 20px;
-    font-weight: 550;
-    line-height: 1.35;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.25;
     letter-spacing: 3px;
     word-spacing: 5px;
-    color: #546447;
-    text-transform: uppercase;
+    color: #a1584a;
     list-style-position: inside;
-
 }
 
 
@@ -193,28 +150,10 @@ footer p {
 /* general header formatting */
 h2 {
     font-size: 30px;
-    color: #546447;
+    color: #fe6d66;
     margin-bottom: 20px;
     text-align: center;
-    line-height: 10px;
-}
-
-/* specific header formatting */
-#welcome-section h2,
-#rules-section h2 {
-    letter-spacing: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 30px;
-}
-
-#payment-section h2,
-#bonus-section h2 {
-    letter-spacing: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 50px;
-}
-
-/* header and image flexbox */
-h2 {
     line-height: 1rem;
+    letter-spacing: 2rem;
+    text-transform: uppercase;
 }

@@ -1,7 +1,7 @@
 /* general page formatting */
 body {
     margin: 0 5%;
-    background-color: #f1d4c3;
+    background-color: #F8EDEB;
     color: #333;
 }
 
@@ -12,7 +12,7 @@ body {
 #wrapper {
     display: grid;
     grid-template-columns: 40px 3fr 20px repeat(3, 1fr) 20px 3fr 40px;
-    grid-template-rows: 24% 40px 60px 40px 18% 40px 26% 60px 24%;
+    grid-template-rows: 24% 40px 60px 40px 18% 40px 23% 60px 24%;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     max-width: 1200px;
@@ -31,6 +31,7 @@ body {
 
 #banner-image {
     width: 100%;
+    border-radius: 25px;
 }
 
 nav {
@@ -72,6 +73,7 @@ footer {
 
 #welcome-image {
     width: 100%;
+    border-radius: 25px;
 }
 
 #rules-image {
@@ -84,8 +86,8 @@ footer {
 
 #rules-text {
     margin: 10px;
-    padding: 20px 40px 20px 60px;
-    background-color: #fefefc;
+    padding: 20px 60px 20px 60px;
+    background-color: #fff;
     font-size: 15px;
     font-weight: 500;
     line-height: 1.25;
@@ -94,6 +96,7 @@ footer {
     color: #A3325C;
     list-style-position: outside;
     text-align: justify;
+    border-radius: 25px;
 }
 
 #welcome-text,
@@ -101,13 +104,14 @@ footer {
 #bonus-section p {
     margin: 10px;
     padding: 40px;
-    background-color: #fefefc;
+    background-color: #fff;
     font-size: 15px;
     font-weight: 500;
     line-height: 1.25;
     letter-spacing: 3px;
     word-spacing: 5px;
     color: #A3325C;
+    border-radius: 25px;
 }
 
 /* navigation formatting */
@@ -130,7 +134,7 @@ footer {
 }
 
 a:link {
-    color: #FF6D7C;
+    color: #FF8167;
     text-decoration-line: none;
 }
 
@@ -143,7 +147,7 @@ a:focus {
 }
 
 a:hover {
-    color: #F3DF85;
+    color: #F8A55B;
 }
 
 a:active {
@@ -152,10 +156,11 @@ a:active {
 
 footer p {
     background-color: transparent;
-    color: #9ca684;
+    color: #F8A55B;
     text-align: center;
     text-transform: uppercase;
     font-size: 25px;
+    font-weight: 500;
     word-spacing: 30px;
     letter-spacing: 15px;
 }
@@ -163,7 +168,7 @@ footer p {
 /* general header formatting */
 h2 {
     font-size: 30px;
-    color: #FF6D7C;
+    color: #FF8167;
     margin-bottom: 20px;
     text-align: center;
     line-height: 1rem;

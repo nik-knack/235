@@ -12,7 +12,7 @@ body {
 #wrapper {
     display: grid;
     grid-template-columns: 40px 3fr 20px repeat(3, 1fr) 20px 3fr 40px;
-    grid-template-rows: 24% 40px 60px 40px 18% 40px 26% 60px 9% 20px 8% 60px;
+    grid-template-rows: 24% 40px 60px 40px 18% 40px 26% 60px 24%;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     max-width: 1200px;
@@ -59,11 +59,11 @@ nav {
 }
 
 #payment-section {
-    grid-area: 9 / 2 / 12 / 5;
+    grid-area: 9 / 2 / 10 / 5;
 }
 
 #bonus-section {
-    grid-area: 9 / 6 / 12 / 9;
+    grid-area: 9 / 6 / 10 / 9;
 }
 
 footer {
@@ -96,7 +96,9 @@ footer {
     text-align: justify;
 }
 
-#welcome-text {
+#welcome-text,
+#payment-section p,
+#bonus-section p {
     margin: 10px;
     padding: 40px;
     background-color: #fefefc;
@@ -106,9 +108,7 @@ footer {
     letter-spacing: 3px;
     word-spacing: 5px;
     color: #A3325C;
-    list-style-position: inside;
 }
-
 
 /* navigation formatting */
 #navigation {

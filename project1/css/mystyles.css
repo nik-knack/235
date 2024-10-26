@@ -103,6 +103,12 @@ footer {
     border-radius: 25px;
 }
 
+#payment-section p,
+#bonus-section p {
+    background-image: url("../media/my_media/border_image_top.png");
+    background-repeat: no-repeat;
+}
+
 #welcome-text,
 #payment-section p,
 #bonus-section p {

@@ -37,9 +37,8 @@ body {
 nav {
     grid-area: 3 / 2 / 4 / 9;
     margin: 5px 0px;
-    background-image: url("../media/spec_media/nav_image_copy.jpg");
-    background-repeat: no-repeat;
-    background-size: contain;
+    background-color: #fff;
+    border-radius: 25px;
 }
 
 #welcome-header-image {
@@ -49,10 +48,14 @@ nav {
 
 #welcome-text {
     grid-area: 5 / 4 / 6 / 9;
+    background-image: url("../media/my_media/border_image_side.png");
+    background-repeat: no-repeat;
 }
 
 #rules-text {
     grid-area: 7 / 2 / 8 / 7;
+    background-image: url("../media/my_media/border_image_side.png");
+    background-repeat: no-repeat;
 }
 
 #rules-header-image {

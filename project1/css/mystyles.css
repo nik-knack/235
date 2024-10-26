@@ -37,7 +37,8 @@ body {
 nav {
     grid-area: 3 / 2 / 4 / 9;
     margin: 5px 0px;
-    background-color: #fff;
+    background-image: url("../media/my_media/nav_image.png");
+    background-repeat: no-repeat;
     border-radius: 25px;
 }
 

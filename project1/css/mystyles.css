@@ -53,7 +53,6 @@ nav {
     grid-area: 5 / 4 / 6 / 9;
     background-image: url("../media/my_media/border_image_side.png");
     background-repeat: no-repeat;
-    background-size: auto;
 }
 
 #project-text {
@@ -61,7 +60,6 @@ nav {
     background-image: url("../media/my_media/border_image_side.png");
     background-repeat: no-repeat;
     background-position: right;
-    background-size: contain;
 }
 
 #project-header-image {

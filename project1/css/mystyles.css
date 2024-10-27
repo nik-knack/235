@@ -12,7 +12,7 @@ body {
 #wrapper {
     display: grid;
     grid-template-columns: 40px 3fr 20px repeat(3, 1fr) 20px 3fr 40px;
-    grid-template-rows: 24% 40px 60px 40px 18% 40px 23% 60px 24%;
+    grid-template-rows: fit-content(24%) 40px 60px 40px fit-content(18%) 40px fit-content(23%) 40px fit-content(19%) 40px 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     max-width: 1200px;
@@ -39,7 +39,9 @@ nav {
     margin: 5px 0px;
     background-image: url("../media/my_media/nav_image.png");
     background-repeat: no-repeat;
+    background-size: cover;
     border-radius: 25px;
+
 }
 
 #welcome-header-image {
@@ -51,28 +53,31 @@ nav {
     grid-area: 5 / 4 / 6 / 9;
     background-image: url("../media/my_media/border_image_side.png");
     background-repeat: no-repeat;
+    background-size: auto;
 }
 
-#rules-text {
+#project-text {
     grid-area: 7 / 2 / 8 / 7;
     background-image: url("../media/my_media/border_image_side.png");
     background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
 }
 
-#rules-header-image {
+#project-header-image {
     grid-area: 7 / 8 / 8 / 9;
 }
 
-#payment-section {
+#contact-section {
     grid-area: 9 / 2 / 10 / 5;
 }
 
-#bonus-section {
+#goals-section {
     grid-area: 9 / 6 / 10 / 9;
 }
 
 footer {
-    grid-area: 12 / 2 / 13 / 9;
+    grid-area: 11 / 2 / 12 / 9;
 }
 
 #welcome-image {
@@ -80,18 +85,14 @@ footer {
     border-radius: 25px;
 }
 
-#rules-image {
+#project-image {
     width: 100%;
     border-radius: 25px;
 }
 
-#payment-image {
-    width: 100%;
-}
-
-#rules-text {
+#project-text {
     margin: 10px;
-    padding: 20px 60px 20px 60px;
+    padding: 20px 80px 20px 60px;
     background-color: #fff;
     font-size: 15px;
     font-weight: 500;
@@ -104,15 +105,15 @@ footer {
     border-radius: 25px;
 }
 
-#payment-section p,
-#bonus-section p {
+#contact-section p,
+#goals-section p {
     background-image: url("../media/my_media/border_image_top.png");
     background-repeat: no-repeat;
 }
 
 #welcome-text,
-#payment-section p,
-#bonus-section p {
+#contact-section p,
+#goals-section p {
     margin: 10px;
     padding: 40px;
     background-color: #fff;
@@ -123,6 +124,15 @@ footer {
     word-spacing: 5px;
     color: #A3325C;
     border-radius: 25px;
+}
+
+#welcome-text {
+    padding-left: 80px;
+}
+
+#contact-section p,
+#goals-section p {
+    padding-top: 60px;
 }
 
 /* navigation formatting */

@@ -14,10 +14,14 @@ body {
     grid-template-columns: 20px 90% 20px;
     grid-template-rows: 14% 30px 40px 30px 13% 30px fit-content(10%) 30px 17% 30px fit-content(15%) 30px fit-content(11%) 30px fit-content(11%) 30px 60px;
     overflow: hidden;
+    justify-items: center;
 }
 
 #banner-section {
     grid-area: 1 / 2 / 2 / 3;
+    position: relative;
+    text-align: center;
+    color: white;
 }
 
 nav {
@@ -44,7 +48,7 @@ nav {
     grid-area: 11 / 2 / 12 / 3;
 }
 
-#contact-section {
+#audience-section {
     grid-area: 13/ 2 / 14 / 3;
 }
 
@@ -64,8 +68,17 @@ img {
     width: 100%;
     height: auto;
     border-radius: 25px;
-
 }
+
+#text-overlay {
+  position: absolute;
+  top: 15%; 
+  left: 25%; 
+  transform: translate(-50%, -50%);  
+  font-size: 100px; 
+  color: #ffa250;
+}
+
 
 #welcome-header-image {
     width: fit-content;
@@ -95,14 +108,14 @@ img {
     border-radius: 25px;
 }
 
-#contact-section p,
+#audience-section p,
 #goals-section p {
     background-image: url("../media/my_media/border_image_top.png");
     background-repeat: no-repeat;
 }
 
 #welcome-text,
-#contact-section p,
+#audience-section p,
 #goals-section p {
     margin: 10px;
     padding: 40px;
@@ -120,7 +133,7 @@ img {
     padding-left: 80px;
 }
 
-#contact-section p,
+#audience-section p,
 #goals-section p {
     padding-top: 60px;
 }
@@ -138,7 +151,7 @@ img {
     margin: 0 20px;
     font-size: 25px;
     font-weight: 800;
-    letter-spacing: 10px;
+    letter-spacing: 5px;
     cursor: pointer;
     text-transform: uppercase;
     line-height: 47px;
@@ -187,12 +200,17 @@ h2 {
     text-transform: uppercase;
 }
 
-@media screen and (max-width: 960) {
-
+@media screen and (max-width: 960px) {
     #welcome-text,
     #project-text {
         background-image: url("../media/my_media/border_image_top.png");
         background-repeat: no-repeat;
+    }
+    #welcome-text {
+        padding-top: 60px;
+    }
+    #project-text {
+        padding-top: 60px;
     }
 }
 
@@ -224,14 +242,13 @@ h2 {
         grid-area: 3 / 2 / 4 / 9;
         margin: 5px 0px;
 
-
     }
 
     #navigation li {
         margin: 0 20px;
         font-size: 25px;
         font-weight: 800;
-        letter-spacing: 20px;
+        letter-spacing: 10px;
         cursor: pointer;
         text-transform: uppercase;
         line-height: 47px;
@@ -259,7 +276,7 @@ h2 {
         grid-area: 7 / 8 / 8 / 9;
     }
 
-    #contact-section {
+    #audience-section {
         grid-area: 9 / 2 / 10 / 5;
     }
 

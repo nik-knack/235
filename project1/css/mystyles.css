@@ -13,7 +13,7 @@ body {
     display: grid;
     grid-template-columns: 20px 90% 20px;
     grid-template-rows: 14% 30px 40px 30px 13% 30px fit-content(10%) 30px 17% 30px fit-content(15%) 30px fit-content(11%) 30px fit-content(11%) 30px 60px;
-    margin: 2vh auto;
+    overflow: hidden;
 }
 
 #banner-section {

@@ -11,76 +11,68 @@ body {
 
 #wrapper {
     display: grid;
-    grid-template-columns: 40px 3fr 20px repeat(3, 1fr) 20px 3fr 40px;
-    grid-template-rows: fit-content(24%) 40px 60px 40px fit-content(18%) 40px fit-content(23%) 40px fit-content(19%) 40px 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    max-width: 1200px;
-    max-height: 2100px;
-}
-
-@media screen and (min-width: 1000px) {
-    #wrapper {
-        margin: 2vh auto;
-    }
+    grid-template-columns: 20px 90% 20px;
+    grid-template-rows: 14% 30px 40px 30px 13% 30px fit-content(10%) 30px 17% 30px fit-content(15%) 30px fit-content(11%) 30px fit-content(11%) 30px 60px;
+    margin: 2vh auto;
 }
 
 #banner-section {
-    grid-area: 1 / 2 / 2 / 9;
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+nav {
+    grid-area: 3 / 2 / 4 / 3;
+    background-image: url("../media/my_media/nav_image.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 25px;
+}
+
+#welcome-header-image {
+    grid-area: 5 / 2 / 6 / 3;
+}
+
+#welcome-text {
+    grid-area: 7 / 2 / 8 / 3;
+}
+
+#project-header-image {
+    grid-area: 9 / 2 / 10 / 3;
+}
+
+#project-text {
+    grid-area: 11 / 2 / 12 / 3;
+}
+
+#contact-section {
+    grid-area: 13/ 2 / 14 / 3;
+}
+
+#goals-section {
+    grid-area: 15 / 2 / 16 / 3;
+}
+
+footer {
+    grid-area: 17 / 2 / 18 / 3;
+}
+
+img {
+    border-radius: 25px;
 }
 
 #banner-image {
     width: 100%;
-    border-radius: 25px;
-}
-
-nav {
-    grid-area: 3 / 2 / 4 / 9;
-    margin: 5px 0px;
-    background-image: url("../media/my_media/nav_image.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+    height: auto;
     border-radius: 25px;
 
 }
 
 #welcome-header-image {
-    grid-area: 5 / 2 / 6 / 3;
-    width: 100%;
-}
-
-#welcome-text {
-    grid-area: 5 / 4 / 6 / 9;
-    background-image: url("../media/my_media/border_image_side.png");
-    background-repeat: no-repeat;
-}
-
-#project-text {
-    grid-area: 7 / 2 / 8 / 7;
-    background-image: url("../media/my_media/border_image_side.png");
-    background-repeat: no-repeat;
-    background-position: right;
+    width: fit-content;
 }
 
 #project-header-image {
-    grid-area: 7 / 8 / 8 / 9;
-}
-
-#contact-section {
-    grid-area: 9 / 2 / 10 / 5;
-}
-
-#goals-section {
-    grid-area: 9 / 6 / 10 / 9;
-}
-
-footer {
-    grid-area: 11 / 2 / 12 / 9;
-}
-
-#welcome-image {
-    width: 100%;
-    border-radius: 25px;
+    width: fit-content;
 }
 
 #project-image {
@@ -146,7 +138,7 @@ footer {
     margin: 0 20px;
     font-size: 25px;
     font-weight: 800;
-    letter-spacing: 20px;
+    letter-spacing: 10px;
     cursor: pointer;
     text-transform: uppercase;
     line-height: 47px;
@@ -193,4 +185,95 @@ h2 {
     line-height: 1rem;
     letter-spacing: 2rem;
     text-transform: uppercase;
+}
+
+@media screen and (max-width: 960) {
+
+    #welcome-text,
+    #project-text {
+        background-image: url("../media/my_media/border_image_top.png");
+        background-repeat: no-repeat;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    #wrapper {
+        display: grid;
+        grid-template-columns: 40px 3fr 20px repeat(3, 1fr) 20px 3fr 40px;
+        grid-template-rows: fit-content(24%) 40px 60px 40px fit-content(18%) 40px fit-content(23%) 40px fit-content(19%) 40px 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        max-width: 1200px;
+        max-height: 2100px;
+    }
+
+    #banner {
+        grid-row: 1 / 2;
+    }
+
+    #banner-section {
+        grid-area: 1 / 2 / 2 / 9;
+    }
+
+    #banner-image {
+        width: 100%;
+        border-radius: 25px;
+    }
+
+    nav {
+        grid-area: 3 / 2 / 4 / 9;
+        margin: 5px 0px;
+
+
+    }
+
+    #navigation li {
+        margin: 0 20px;
+        font-size: 25px;
+        font-weight: 800;
+        letter-spacing: 20px;
+        cursor: pointer;
+        text-transform: uppercase;
+        line-height: 47px;
+    }
+
+    #welcome-header-image {
+        grid-area: 5 / 2 / 6 / 3;
+        width: 100%;
+    }
+
+    #welcome-text {
+        grid-area: 5 / 4 / 6 / 9;
+        background-image: url("../media/my_media/border_image_side.png");
+        background-repeat: no-repeat;
+    }
+
+    #project-text {
+        grid-area: 7 / 2 / 8 / 7;
+        background-image: url("../media/my_media/border_image_side.png");
+        background-repeat: no-repeat;
+        background-position: right;
+    }
+
+    #project-header-image {
+        grid-area: 7 / 8 / 8 / 9;
+    }
+
+    #contact-section {
+        grid-area: 9 / 2 / 10 / 5;
+    }
+
+    #goals-section {
+        grid-area: 9 / 6 / 10 / 9;
+    }
+
+    footer {
+        grid-area: 11 / 2 / 12 / 9;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #wrapper {
+        margin: 2vh auto;
+    }
 }

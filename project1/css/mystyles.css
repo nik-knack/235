@@ -13,7 +13,7 @@ body {
     display: grid;
     grid-template-columns: 20px 90% 20px;
     grid-template-rows: 3% 30px 190px 30px fit-content(7%) 30px fit-content(10%) 30px fit-content(7%) 30px fit-content(15%) 30px fit-content(11%) 30px fit-content(11%) 30px 60px;
-    overflow: hidden;
+    
 }
 
 #banner-section {
@@ -61,12 +61,6 @@ footer {
 }
 
 img {
-    border-radius: 25px;
-}
-
-#banner-image {
-    width: 100%;
-    height: auto;
     border-radius: 25px;
 }
 
@@ -178,7 +172,7 @@ footer p {
 }
 
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px ) and (max-width: 960px) {
     #wrapper {
         grid-template-rows: 10% 30px 40px 30px fit-content(7%) 30px fit-content(10%) 30px fit-content(7%) 30px fit-content(15%) 30px fit-content(11%) 30px fit-content(11%) 30px 60px;
     }
@@ -193,10 +187,17 @@ footer p {
     }
     #navigation {
         display: flex;
+        flex-direction: row;
         justify-content: space-around;
         list-style-type: none;
         margin: 0;
         padding: 0;
+    }
+
+    nav {
+        background-image: url("../media/my_media/nav_image.png");
+        background-repeat: no-repeat;
+        background-size:cover;    
     }
 }
 
@@ -244,11 +245,10 @@ footer p {
     #wrapper {
         display: grid;
         grid-template-columns: 40px 3fr 20px repeat(3, 1fr) 20px 3fr 40px;
-        grid-template-rows: fit-content(24%) 40px 60px 40px fit-content(18%) 40px fit-content(23%) 40px fit-content(19%) 40px 1fr 40px;
+        grid-template-rows: 25% 40px 60px 40px fit-content(18%) 40px fit-content(23%) 40px fit-content(19%) 40px 1fr 40px;
         grid-column-gap: 0px;
         grid-row-gap: 0px;
         max-width: 1200px;
-        max-height: 2100px;
     }
 
     #banner {
@@ -256,12 +256,19 @@ footer p {
     }
 
     #banner-section {
-        grid-area: 1 / 2 / 2 / 9;
+        color: #ffa250;
+        background-image: url("../media/my_media/cat_banner.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 25px;
+        font-size: 48px;
+        text-align: left;
+        padding-left: 10px;
+        width:100%;
     }
 
-    #banner-image {
-        width: 100%;
-        border-radius: 25px;
+    #banner-section {
+        grid-area: 1 / 2 / 2 / 9;
     }
 
     nav {
@@ -270,6 +277,15 @@ footer p {
         background-image: url("../media/my_media/nav_image.png");
         background-repeat: no-repeat;
         background-size:cover;
+    }
+
+    #navigation {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
     }
 
     #navigation li {

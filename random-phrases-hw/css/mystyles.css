@@ -48,6 +48,14 @@ button {
     margin: 30px;
 }
 
+button:hover {
+    background-color: #1f305e;
+}
+
+button:active {
+    background-color: #fdee00;
+}
+
 footer {
     color: #1F305E;
 

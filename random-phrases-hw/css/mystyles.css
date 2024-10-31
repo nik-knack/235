@@ -1,0 +1,117 @@
+body {
+    font-family: "Chewy", Verdana, sans-serif;
+    background-color: #FCEFE6;
+}
+
+h1 {
+    color: #1F305E;
+
+}
+
+#star-image {
+    rotate: -20deg;
+    z-index: -1;
+    width: 60%;
+}
+
+#kirby-image {
+    width: 50%;
+    position: absolute;
+    top: 20px;
+}
+
+#image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+#flex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+p {
+    color: #DA4167;
+    margin: 20px;
+    padding: 10px;
+}
+
+footer {
+    color: #1F305E;
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    #wrapper {
+        margin: 10vh;
+    }
+
+    h1 {
+        font-size: 60px;
+    }
+
+    p {
+        font-size: 35px;
+    }
+
+    #flex-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #image-container {
+        width: 100%;
+    }
+
+    #star-image {
+        width: 85%;
+    }
+
+    #kirby-image {
+        width: 75%;
+        position: absolute;
+        top: 25px;
+        left: 35px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #wrapper {
+        margin: 2vh;
+    }
+
+    h1 {
+        font-size: 60px;
+    }
+
+    p {
+        font-size: 35px;
+    }
+
+    #flex-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #kirby-image {
+        position: absolute;
+        top: 25px;
+        left: 65px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #kirby-image {
+        position: absolute;
+        top: 25px;
+        left: 150px;
+    }
+}

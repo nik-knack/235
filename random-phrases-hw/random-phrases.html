@@ -25,7 +25,6 @@
     <div id="flex-container">
         <div id="image-container">
             <img id="star-image" src="media/star.png" alt="">
-            <!-- source: https://www.kindpng.com/imgv/ThiRoxT_heart-star-kirbys-dreamland-clipart-png-download-kirby/ -->
             <img id="kirby-image" src="media/cutter_kirby.png" alt="">
         </div>
 
@@ -39,14 +38,31 @@
     <footer>Made by Dania Macias</footer>
 </body>
 <script>
-    let quote = ["Cutter", "Sword", "Fire", "Ice", "Stone", "Parasol"];
+    let abilities = {
+        "Cutter": "media/cutter_kirby.png",
+        "Sword": "media/sword_kirby.png",
+        "Fighter": "media/fighter_kirby.png",
+        "Ice": "media/ice_kirby.png",
+        "Stone": "media/stone_kirby.png",
+        "Parasol": "media/parasol_kirby.png",
+        "Hammer": "media/hammer_kirby.png",
+        "Beam": "media/beam_kirby.png",
+    };
 
     let text = document.getElementById("text");
-    window.onload = displayQuote;
+    let kirbyImage = document.getElementById("kirby-image");
 
     function displayQuote() {
-        text.innerHTML = quote[Math.floor(Math.random() * quote.length)];
+        let abilityKeys = Object.keys(abilities);
+        let randomIndex = Math.floor(Math.random() * abilityKeys.length);
+        let randomAbility = abilityKeys[randomIndex];
+
+        text.innerHTML = randomAbility;
+        kirbyImage.src = abilities[randomAbility];
+        kirbyImage.alt = `${randomAbility} Kirby`;
     }
+    
+    window.onload = displayQuote;
 
     let button = document.querySelector("button");
     button.addEventListener("click", displayQuote);

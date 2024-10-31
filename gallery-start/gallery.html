@@ -78,15 +78,34 @@
       </div>
        <p id="description">Choose an image.</p>
      <footer>
-        <p>For IGME-230 Web Site Design & Implementation</p>
+        <p id="footerText">For IGME-230 Web Site Design & Implementation</p>
      </footer>
     </section>
      <script>
-	/*
-	The name of the image is stored in the data-image (custom data) attribute of each
-	span. In JavaScript we access these custom data properties using the .dataset 
-	property. We also covered this in web-apps-6.
-	*/
+		const titles = {
+			"Cassie": "A cheerful friend named Cassie",
+			"Seal": "A playful seal at the beach",
+			"Wolf": "A majestic wolf in the wild",
+			"Eagle": "An eagle soaring in the sky"
+		};
+
+		document.querySelectorAll('span[data-image]').forEach(item => {
+			const itemText = item.textContent;
+			if (titles[itemText]) {
+				item.setAttribute('title', titles[itemText]);
+			}
+		});
+		document.getElementById('footerText').textContent = "For IGME-235 Web Tech for Games";
+
+		document.querySelectorAll('span[data-image]').forEach(item => {
+			item.addEventListener('click', function() {
+				const imageName = this.getAttribute('data-image');
+				const imageTitle = this.getAttribute('title');
+
+				document.getElementById('placeholder').src = `images/${imageName}`;
+				document.getElementById('description').textContent = imageTitle;
+			});
+		});
 	</script>
 	   
 </body>

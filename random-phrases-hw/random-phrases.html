@@ -29,12 +29,27 @@
             <img id="kirby-image" src="media/cutter_kirby.png" alt="">
         </div>
 
-        <div id="text">
-            <p>words wooords woooooords...</p>
+        <div>
+            <p id="text">words wooords woooooords...</p>
+            <button>Click for new ability!</button>
         </div>
+
     </div>
 
     <footer>Made by Dania Macias</footer>
 </body>
+<script>
+    let quote = ["Cutter", "Sword", "Fire", "Ice", "Stone", "Parasol", "ESP"];
+
+    let text = document.getElementById("text");
+    window.onload = displayQuote;
+
+    function displayQuote() {
+        text.innerHTML = quote[Math.floor(Math.random() * quote.length)];
+    }
+
+    let button = document.querySelector("button");
+    button.addEventListener("click", displayQuote);
+</script>
 
 </html>

@@ -5,7 +5,6 @@ body {
 
 h1 {
     color: #1F305E;
-
 }
 
 #star-image {
@@ -34,12 +33,24 @@ h1 {
 
 p {
     color: #DA4167;
-    margin: 20px;
+    margin: 50px;
     padding: 10px;
+}
+
+button {
+    font-family: "Chewy", Verdana, sans-serif;
+    color: white;
+    background-color: #ff91af;
+    border: none;
+    border-radius: 25px;
+    height: 40px;
+    width: 100px;
+    margin: 30px;
 }
 
 footer {
     color: #1F305E;
+
 }
 
 #wrapper {
@@ -60,6 +71,11 @@ footer {
 
     p {
         font-size: 35px;
+        margin: 20px;
+    }
+
+    footer {
+        margin: 100px;
     }
 
     #flex-container {
@@ -94,6 +110,11 @@ footer {
 
     p {
         font-size: 35px;
+        margin: 20px;
+    }
+
+    footer {
+        margin: 100px;
     }
 
     #flex-container {
@@ -101,14 +122,6 @@ footer {
         flex-direction: row;
     }
 
-    #kirby-image {
-        position: absolute;
-        top: 25px;
-        left: 65px;
-    }
-}
-
-@media screen and (min-width: 1024px) {
     #kirby-image {
         position: absolute;
         top: 25px;

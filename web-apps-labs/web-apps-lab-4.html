@@ -44,21 +44,16 @@
             "New Media Club": "http://newmediaclub.rit.edu/"
         }
 
-        for (let i = 0; i < colors.length; i++) {
-            console.log(colors[i]);
-
-            let li = document.createElement("li");
-            li.textContent = colors[i];
-            document.getElementById("colorsList").appendChild(li);
+        const createList = (listElement, array) => {
+            for (let item of array) {
+                let li = document.createElement("li");
+                li.textContent = item;
+                listElement.appendChild(li);
+            }
         }
 
-        for (let item of foods) {
-            console.log(item);
-
-            let li = document.createElement("li");
-            li.textContent = item;
-            document.getElementById("foodsList").appendChild(li);
-        }
+        createList(document.getElementById("colorsList"), colors);
+        createList(document.getElementById("foodsList"), foods);
 
         for (let key in links) {
             console.log(`${key}: ${links[key]}`);

@@ -44,7 +44,7 @@
             "New Media Club": "http://newmediaclub.rit.edu/"
         }
 
-        const createList = (listElement, array) => {
+        const createList = (listElement, array = ["dogs", "cats", "birds"]) => {
             for (let item of array) {
                 let li = document.createElement("li");
                 li.textContent = item;

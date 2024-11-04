@@ -14,7 +14,7 @@
     <script>
         "use strict"
 
-        let monsters = [];      // our array of monsters
+        let monsters = [];  // our array of monsters
 
         /**
          * Our onload Event.
@@ -22,21 +22,29 @@
          */
         window.onload = function () {
             makeSampleMonsters();
-            showMonsters();
+            showMonsters('Goomba', '#goombas');
+            showMonsters('Boo', '#boos');
         }
 
         /**
-         * Create a set of Sample Monsters.
-         * 
-         */
+        * Create a set of Sample Monsters.
+        * 
+        */
         function makeSampleMonsters() {
             let monster;
 
+            // Create Goombas
             monster = makeGoomba("John", 20, 30, 100);
             monsters.push(monster);
             monster = makeGoomba("Fred", 30, 100, 150);
             monsters.push(monster);
             monster = makeGoomba("Alice", 40, 150, 200);
+            monsters.push(monster);
+
+            // Create Boos
+            monster = makeBoo("Kirby", 150, 40, 250);
+            monsters.push(monster);
+            monster = makeBoo("Waddle Dee", 60, 120, 300);
             monsters.push(monster);
         }
 
@@ -44,20 +52,24 @@
          * Function that shows our monsters (just Goombas for now)
          * 
          */
-        function showMonsters() {
-            let goombaList = document.querySelector("#goombas");
+        function showMonsters(type, selector) {
+            let monsterList = document.querySelector(selector);
+            monsterList.innerHTML = '';
+
 
             for (let i = 0; i < monsters.length; i++) {
-                let liStr = "";
-                let li = document.createElement("li");
+                if (monsters[i].type === type) {
+                    let liStr = "";
+                    let li = document.createElement("li");
 
-                for (let key in monsters[i]) {
-                    if (typeof monsters[i][key] !== "function") {
-                        liStr += `<b>${key}:</b> ${monsters[i][key]}<br />`;
+                    for (let key in monsters[i]) {
+                        if (typeof monsters[i][key] !== "function") {
+                            liStr += `<b>${key}:</b> ${monsters[i][key]}<br />`;
+                        }
                     }
+                    li.innerHTML = liStr;
+                    monsterList.appendChild(li);
                 }
-                li.innerHTML = liStr;
-                goombaList.appendChild(li);
             }
         }
 
@@ -71,6 +83,7 @@
                 hp: 100,
                 speed: 10,
                 score: 100,
+                type: "",  // yype of monster (e.g., Goomba or Boo)
                 status: function () {
                     console.log("name: " + this.name + ", hp: " + this.hp + ", speed: " + this.speed + ", score: " + this.score);
                 }
@@ -87,6 +100,7 @@
             goomba.hp = hp;
             goomba.speed = speed;
             goomba.score = score;
+            goomba.type = "Goomba";  // set the monster type to Goomba
             goomba.takeDamage = function (dmgVal) {
                 goomba.hp -= dmgVal;
             }
@@ -97,22 +111,48 @@
         }
 
         /**
-         * Function that can be used inside a monster object.
+         * Create a Boo.
          * 
          */
+        function makeBoo(name, hp, speed, score) {
+            let boo = createBaseMonster();
+            boo.name = name;
+            boo.hp = hp;
+            boo.speed = speed;
+            boo.score = score;
+            boo.type = "Boo";  // set the monster type to Boo
+            boo.turnInvisible = function () {
+                console.log(this.name + " is now invisible!");
+            }
+            boo.powerUp = powerUp;
+
+            Object.seal(boo);
+            return boo;
+        }
+
+        /**
+       * Function that can be used inside a monster object.
+       * 
+       */
         function powerUp(val) {
             this.speed += val;
-            this.hp += val
+            this.hp += val;
             this.status();
-        };
+        }
 
     </script>
 </head>
 
 <body>
     <div id="lineUp">
+        <!-- Section for Goombas -->
         <h1>Goombas</h1>
         <ul id="goombas">
+        </ul>
+
+        <!-- Section for Boos -->
+        <h1>Boos</h1>
+        <ul id="boos">
         </ul>
     </div>
 </body>

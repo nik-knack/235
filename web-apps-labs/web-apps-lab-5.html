@@ -43,7 +43,31 @@
     </div>
 
     <script>
-        /* Write your code here! */
+
+        const colorButton = document.getElementById("colorButton");
+        const infoParagraph = document.getElementById("info");
+        const legendElement = document.querySelector("legend");
+
+        function updateInfo(e) {
+            infoParagraph.textContent = `You have selected "${e.target.value}"!`;
+        }
+
+        document.querySelectorAll("input[name='colorGroup']").forEach(radio => {
+            radio.addEventListener("change", updateInfo);
+        });
+
+        function handleSubmit() {
+            const selectedColor = document.querySelector("input[name='colorGroup']:checked");
+
+            if (selectedColor) {
+                infoParagraph.textContent = `Your FINAL CHOICE is "${selectedColor.value}"!`;
+            } else {
+                infoParagraph.textContent = "Please select a color before submitting!"
+            }
+        }
+
+        colorButton.addEventListener("click", handleSubmit);
+
     </script>
 </body>
 

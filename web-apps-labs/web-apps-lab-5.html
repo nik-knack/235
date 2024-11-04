@@ -61,6 +61,7 @@
 
             if (selectedColor) {
                 infoParagraph.textContent = `Your FINAL CHOICE is "${selectedColor.value}"!`;
+                legendElement.style.color = selectedColor.value;
             } else {
                 infoParagraph.textContent = "Please select a color before submitting!"
             }

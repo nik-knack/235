@@ -36,16 +36,13 @@ header {
   flex-direction: row;
 }
 
-#introduciton-text {
-  flex: 2;
-}
-
 #dania-image {
-  flex: 1;
+  margin: 0 5%;
 }
 
-#dania-image img {
-  width: 100%;
+p {
+  margin: 0 5%;
+  padding: 5px 5%;
 }
 
 ul {
@@ -54,7 +51,7 @@ ul {
 }
 
 footer {
-  justify-content: center;
+  justify-items: center;
 }
 
 a:link {

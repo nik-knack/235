@@ -14,6 +14,8 @@
         const app = new PIXI.Application();
         await app.init({ width: 640, height: 360 });
 
+        app.renderer.background.color = 0xff00ff; // Magenta!
+
         // #2 - Append its "view" (a <canvas> tag that it created for us) to the DOM
         document.body.appendChild(app.canvas);
     </script>

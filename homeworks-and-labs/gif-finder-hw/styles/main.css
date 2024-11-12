@@ -2,14 +2,20 @@
     font-family: verdana, tahoma, sans-serif;
 }
 
+body {
+    margin: 0 10vh;
+}
+
 header {
     background: url(../images/cats.jpg);
     height: 195px;
+    border: solid grey 2px;
+    border-radius: 25px;
 }
 
 header h1 {
     margin: 0;
-    color: blue;
+    color: black;
     text-align: center;
     font-size: 100px;
     padding-top: 35px;
@@ -88,4 +94,13 @@ button:focus {
 .widgets {
     margin-top: 1em;
     margin-bottom: 1em;
+}
+
+#search-bar {
+    background-color: #ececec;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: solid grey 2px;
+    border-radius: 25px;
 }

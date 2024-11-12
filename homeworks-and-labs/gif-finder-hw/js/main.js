@@ -29,7 +29,7 @@ function searchButtonClicked() {
     term = encodeURIComponent(term);
 
     // 7
-    if(term.length < 1) return;
+    if (term.length < 1) return;
 
     // 8
     url += "&q=" + term;
@@ -74,20 +74,19 @@ function dataLoaded(e) {
     let obj = JSON.parse(xhr.responseText);
 
     // 8
-    if (!obj.data || obj.data.length == 0){
+    if (!obj.data || obj.data.length == 0) {
         document.querySelector("#status").innerHTML = "<b>No results found for '" + displayTerm + "'<b>";
         return; // bail out
-
     }
 
     // 9
     let results = obj.data;
-    console.log("results.length = " + results.legnth);
+    console.log("results.length = " + results.length);
     let bigString = "<p><i>Here are " + results.length + " results for '" + displayTerm + "'</i></p>";
 
     // 10
-    for (let i=0; i<results; i++) {
-        let results = results[i];
+    for (let i = 0; i < results.length; i++) {
+        let result = results[i];
 
         // 11
         let smallURL = result.images.fixed_width_small.url;
@@ -98,7 +97,7 @@ function dataLoaded(e) {
 
         // 13
         let line = `<div class='result'><img src='${smallURL}' title='${result.id}' />`;
-        line += `<span>< a target='_blank' href='${url}'>View on Giphy</a></span></div>`;
+        line += `<span><a target='_blank' href='${url}'>View on Giphy</a></span></div>`;
 
         // 15 
         bigString += line;

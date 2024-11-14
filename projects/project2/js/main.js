@@ -63,7 +63,7 @@ function dataLoaded(e) {
     let obj = JSON.parse(xhr.responseText);
 
     if (!obj.amiibo || obj.amiibo.length == 0) {
-        document.querySelector("#status").innerHTML = "<b>No results found for '" + term + "'<b>";
+        document.querySelector("#status").innerHTML = "<b>No results found for '" + displayTerm + "'<b>";
         return; // bail out
     }
 

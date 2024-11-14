@@ -22,10 +22,13 @@ function getData() {
     displayTerm = term;
     term = encodeURIComponent(term);
     url += term;
-    console.log("Here is the url: " + url);
 
     let type = document.querySelector("#type").value;
     url += "&type=" + type;
+    console.log("Here is the url: " + url);
+
+    let gameSeries = document.querySelector("#gameSeries").value;
+    url += "&gameseries=" + gameSeries;
     console.log("Here is the url: " + url);
 
     // 4 - update the UI
@@ -69,6 +72,7 @@ function dataLoaded(e) {
     console.log("results.length = " + results.length);
     let bigString = "<p><i>Here are " + results.length + " results for '" + displayTerm + "'</i></p>";
 
+    // iterate through results 
     for (let i = 0; i < results.length; i++) {
         let result = results[i];
 
@@ -77,10 +81,8 @@ function dataLoaded(e) {
         let type = result.type;
 
         let line = `<img src="${image}" title="${character}" />`;
-        // console.log(`${character}`);
 
         bigString += line;
-
     }
 
     // 5 - display final results to user

@@ -22,6 +22,11 @@ function getData() {
     displayTerm = term;
     term = encodeURIComponent(term);
     url += term;
+    console.log("Here is the url: " + url);
+
+    let type = document.querySelector("#type").value;
+    url += "&type=" + type;
+    console.log("Here is the url: " + url);
 
     // 4 - update the UI
     document.querySelector("#debug").innerHTML = `<b>Querying web service with:</b> <a href="${url}" target="_blank">${url}</a>`;
@@ -69,9 +74,10 @@ function dataLoaded(e) {
 
         let image = result.image;
         let character = result.character;
+        let type = result.type;
 
         let line = `<img src="${image}" title="${character}" />`;
-        console.log(`${character}`);
+        // console.log(`${character}`);
 
         bigString += line;
 

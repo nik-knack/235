@@ -23,10 +23,31 @@ header h1 {
 
 #status {
     font-style: italic;
-    height: 32px;
+}
+
+#content {
+    margin: 0 auto;
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px 20px;
 }
 
 .result {
+    display: flex;
+    flex-direction: column;
+}
+
+.result img {
+    width: 100%;
+    box-shadow: 0 4px 15px 0;
+}
+
+.result span {
+    order: -1;
+}
+
+/* .result {
     position: relative;
     height: 175px;
     width: 100px;
@@ -53,7 +74,7 @@ header h1 {
 
 .result audio {
     width: 130px;
-}
+} */
 
 button {
     display: inline-block;

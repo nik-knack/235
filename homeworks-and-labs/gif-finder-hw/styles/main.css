@@ -36,15 +36,51 @@ header h1 {
 .result {
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .result img {
     width: 100%;
     box-shadow: 0 4px 15px 0;
+    position: relative;
 }
 
-.result span {
-    order: -1;
+.result .rating {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.result .giphy {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+a:link, a:visited {
+    color: white;
+}
+a:hover {
+    color: blue;
+}
+a:focus {
+    color: green;
+}
+a:active {
+    color: red;
 }
 
 /* .result {

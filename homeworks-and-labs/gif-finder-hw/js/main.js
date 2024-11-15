@@ -101,12 +101,28 @@ function dataLoaded(e) {
         // 13
         let line = `<div class='result'>`;
         line += `<img src='${smallURL}' title='${result.id}' />`;
-        line += `<span><a target='_blank' href='${url}'>View on Giphy</a>`;
-        line += `<p>Rating: ${rating}</p></span>`;
-        line += `</div >`;
+        line += `<span class="rating" style="background-color: ${getRatingColor(rating)}">${rating}</span>`;
+        line += `<span class="giphy"><a target='_blank' href='${url}'>View on Giphy</a></span>`;
+        line += `</div>`;
 
         // 15 
         bigString += line;
+    }
+
+    // switch colors based on rating    
+    function getRatingColor(rating) {
+        switch (rating) {
+            case "G":
+                return "rgba(0, 128, 0, 0.5)"; // Green with 60% opacity
+            case "PG":
+                return "rgba(0, 0, 255, 0.5)"; // Blue with 60% opacity
+            case "PG-13":
+                return "rgba(255, 165, 0, 0.5)"; // Orange with 60% opacity
+            case "R":
+                return "rgba(255, 0, 0, 0.5)"; // Red with 60% opacity
+            default:
+                return "rgba(128, 128, 128, 0.5)"; // Grey with 60% opacity
+        }
     }
 
     // 16

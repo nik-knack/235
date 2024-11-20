@@ -30,9 +30,9 @@ loadImages();
 async function loadImages() {
     // https://pixijs.com/8.x/guides/components/assets#loading-multiple-assets
     PIXI.Assets.addBundle("sprites", {
-        spaceship: "images/spaceship.jpg",
-        explosions: "images/explosions.jpg",
-        move: "images/move.jpg",
+        spaceship: "images/spaceship.png",
+        explosions: "images/explosions.png",
+        move: "images/move.png",
     });
 
     // The second argument is a callback function that is called whenever the loader makes progress.
@@ -53,12 +53,21 @@ async function setup() {
     sceneHeight = app.renderer.height;
 
     // #1 - Create the `start` scene
+    startScene = new PIXI.Container();
+    stage.addChild(startScene);
 
     // #2 - Create the main `game` scene and make it invisible
+    gameScene = new PIXI.Container();
+    gameScene.visible = false;
+    stage.addChild(gameScene);
 
     // #3 - Create the `gameOver` scene and make it invisible
+    gameOverScene = new PIXI.Container();
+    gameOverScene.visible = false;
+    stage.addChild(gameOverScene);
 
     // #4 - Create labels for all 3 scenes
+    createLabelsAndButtons();
 
     // #5 - Create ship
 

@@ -13,42 +13,44 @@
 </head>
 
 <body>
+
     <header>
         <h1>Amiibo Finder</h1>
     </header>
 
-    <p>Search Term -&gt; <input id="searchterm" type="text" size="20" maxlength="20" autofocus value="mario" /></p>
+    <div id="search-bar">
+        <p>Search Character <input id="searchterm" type="text" size="20" maxlength="20" autofocus value="mario" /></p>
 
-    <div class="widgets">
-        Type -&gt;
-        <select id="type">
-            <option value="any">Any</option>
-            <option value="figure" selected>Figure</option>
-            <option value="card">Card</option>
-            <option value="band">Band</option>
-            <option value="yarn">Yarn</option>
-        </select>
-    </div>
-    <br>
+        <div class="widgets">
+            Amiibo Type
+            <select id="type">
+                <option value="any">Any</option>
+                <option value="figure" selected>Figure</option>
+                <option value="card">Card</option>
+                <option value="band">Band</option>
+                <option value="yarn">Yarn</option>
+            </select>
+        </div>
 
-    <div class="widgets">
-        Limit -&gt;
-        <select id="amiiboSeries">
-            <option value="default" selected>Any</option>
-        </select>
-    </div>
+        <div class="widgets">
+            Amiibo Series
+            <select id="amiiboSeries">
+                <option value="default" selected>Any</option>
+            </select>
+        </div>
 
-    <div class="widgets">
-        Limit -&gt;
-        <select id="gameSeries">
-            <option value="default" selected>Any</option>
-        </select>
+        <div class="widgets">
+            Game Series
+            <select id="gameSeries">
+                <option value="default" selected>Any</option>
+            </select>
+        </div>
     </div>
 
     <p><button type="button" id="search" class="green">Search!</button></p>
 
-    -->
     <p id="debug"></p>
+
     <hr>
     <h2>Results</h2>
     <div id="content">

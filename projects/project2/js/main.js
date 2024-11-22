@@ -106,6 +106,14 @@ function getData() {
     term = encodeURIComponent(term);
     url += term;
 
+    let amiiboType = document.querySelector("#amiiboType").value;
+    url += "&type=" + amiiboType;
+    console.log("Here is the url: " + url);
+
+    let amiiboSeries = document.querySelector("#amiiboSeries").value;
+    url += "&amiiboseries=" + amiiboSeries;
+    console.log("Here is the url: " + url);
+
     let gameSeries = document.querySelector("#gameSeries").value;
     url += "&gameseries=" + gameSeries;
     console.log("Here is the url: " + url);

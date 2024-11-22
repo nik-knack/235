@@ -35,8 +35,8 @@ function getAmiiboType() {
         let options = '<option value="default" selected>Any</option>';
         let obj = JSON.parse(xhr.responseText);
         let results = obj.amiibo;
-        for (let i = 0; i < results.length; i++) {
-            options += `<option value="${results[i].name}">${results[i].name}</option>`
+        for (const element of results) {
+            options += `<option value="${element.name}">${element.name}</option>`
         }
         document.querySelector("#amiiboType").innerHTML = options;
     }
@@ -54,8 +54,8 @@ function getAmiiboSeries() {
         let options = '<option value="default" selected>Any</option>';
         let obj = JSON.parse(xhr.responseText);
         let results = obj.amiibo;
-        for (let i = 0; i < results.length; i++) {
-            options += `<option value="${results[i].name}">${results[i].name}</option>`
+        for (const element of results) {
+            options += `<option value="${element.name}">${element.name}</option>`
         }
         document.querySelector("#amiiboSeries").innerHTML = options;
     }
@@ -106,16 +106,13 @@ function getData() {
     term = encodeURIComponent(term);
     url += term;
 
-    // let type = document.querySelector("#type").value;
-    // url += "&type=" + type;
-    // console.log("Here is the url: " + url);
-
     let gameSeries = document.querySelector("#gameSeries").value;
     url += "&gameseries=" + gameSeries;
     console.log("Here is the url: " + url);
 
     // 4 - update the UI
     document.querySelector("#debug").innerHTML = `<b>Querying web service with:</b> <a href="${url}" target="_blank">${url}</a>`;
+    document.querySelector("#status").innerHTML = "<p>Searching for '" + displayTerm + "'</p>"
 
     // 5 - create a new XHR object
     let xhr = new XMLHttpRequest();
@@ -157,13 +154,12 @@ function dataLoaded(e) {
     let bigString = "";
 
     // iterate through results 
-    for (let i = 0; i < results.length; i++) {
-        let result = results[i];
+    for (const element of results) {
+        let result = element;
 
         let image = result.image;
         let character = result.character;
         let amiiboSeries = result.amiiboSeries;
-        let type = result.type;
 
         let line = `<div id='result'>`;
         line += `<img src="${image}" title="${character}" />`;

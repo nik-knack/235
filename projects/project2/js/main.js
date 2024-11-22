@@ -41,8 +41,6 @@ function getAmiiboType() {
         document.querySelector("#amiiboType").innerHTML = options;
     }
 
-    xhr.onerror = dataError;
-
     xhr.open("GET", "https://www.amiiboapi.com/api/type/");
     xhr.send();
 }
@@ -59,8 +57,6 @@ function getAmiiboSeries() {
         }
         document.querySelector("#amiiboSeries").innerHTML = options;
     }
-
-    xhr.onerror = dataError;
 
     xhr.open("GET", "https://www.amiiboapi.com/api/amiiboseries/");
     xhr.send();
@@ -82,10 +78,9 @@ function getGameSeries() {
                 options += `<option value="${item.name}">${item.name}</option>`;
             }
         });
+
         document.querySelector("#gameSeries").innerHTML = options;
     }
-
-    xhr.onerror = dataError;
 
     xhr.open("GET", "https://www.amiiboapi.com/api/gameseries/");
     xhr.send();
@@ -106,17 +101,23 @@ function getData() {
     term = encodeURIComponent(term);
     url += term;
 
+    // Get filter values
     let amiiboType = document.querySelector("#amiiboType").value;
-    url += "&type=" + amiiboType;
-    console.log("Here is the url: " + url);
-
     let amiiboSeries = document.querySelector("#amiiboSeries").value;
-    url += "&amiiboseries=" + amiiboSeries;
-    console.log("Here is the url: " + url);
-
     let gameSeries = document.querySelector("#gameSeries").value;
-    url += "&gameseries=" + gameSeries;
-    console.log("Here is the url: " + url);
+
+    // Append filters only if they are not "default"
+    if (amiiboType !== "default") {
+        url += `&type=${encodeURIComponent(amiiboType)}`;
+    }
+
+    if (amiiboSeries !== "default") {
+        url += `&amiiboSeries=${encodeURIComponent(amiiboSeries)}`;
+    }
+
+    if (gameSeries !== "default") {
+        url += `&gameseries=${encodeURIComponent(gameSeries)}`;
+    }
 
     // 4 - update the UI
     document.querySelector("#debug").innerHTML = `<b>Querying web service with:</b> <a href="${url}" target="_blank">${url}</a>`;
@@ -128,24 +129,15 @@ function getData() {
     // 6 - set the onload handler
     xhr.onload = dataLoaded;
 
-    // 7 - set the onerror handler
-    xhr.onerror = dataError;
 
     // 8 - open connection and send the request
     xhr.open("GET", url);
     xhr.send();
 }
 
-function dataError(e) {
-    console.log("An error occurred");
-}
-
 function dataLoaded(e) {
     // 1 - e.target is the xhr object
     let xhr = e.target;
-
-    // 2 - xhr.responseText is the JSON file we just downloaded
-    console.log(xhr.responseText);
 
     // 3 - turn the text into a parsable JavaScript object
     let obj = JSON.parse(xhr.responseText);
@@ -158,7 +150,6 @@ function dataLoaded(e) {
 
     // 4 - if there is an array of results, loop through them
     let results = obj.amiibo;
-    console.log("results.length = " + results.length);
     let bigString = "";
 
     // iterate through results 

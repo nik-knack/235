@@ -3,7 +3,87 @@ window.onload = init;
 let displayTerm = "";
 
 function init() {
+    getAmiiboType();
+    getAmiiboSeries();
+    getGameSeries();
     document.querySelector("#search").onclick = getData;
+
+    // locally saves last search character
+    const searchField = document.querySelector("#searchterm");
+    const prefix = "dlm4695-";
+    const termKey = prefix + "name";
+    
+    const storedTerm = localStorage.getItem(termKey);
+
+    // sets a default local last search character
+    if (storedTerm) {
+        searchField.value = storedTerm;
+    }
+    else {
+        searchField.value = "mario";
+    }
+
+    searchField.onchange = (e) => {
+        localStorage.setItem(termKey, e.target.value);
+    };
+}
+
+function getAmiiboType() {
+    let xhr = new XMLHttpRequest();
+
+    xhr.onload = (e) => {
+        let options = '<option value="default" selected>Any</option>';
+        let obj = JSON.parse(xhr.responseText);
+        let results = obj.amiibo;
+        for (let i = 0; i< results.length;i++) {
+            options += `<option value="${results[i].name}">${results[i].name}</option>`
+        }
+        document.querySelector("#amiiboType").innerHTML = options;
+    }
+
+    xhr.onerror = dataError;
+
+    xhr.open("GET", "https://www.amiiboapi.com/api/type/");
+    xhr.send();
+}
+
+function getAmiiboSeries() {
+    let xhr = new XMLHttpRequest();
+
+    xhr.onload = (e) => {
+        let options = '<option value="default" selected>Any</option>';
+        let obj = JSON.parse(xhr.responseText);
+        let results = obj.amiibo;
+        for (let i = 0; i< results.length;i++) {
+            options += `<option value="${results[i].name}">${results[i].name}</option>`
+        }
+        document.querySelector("#amiiboSeries").innerHTML = options;
+    }
+
+    xhr.onerror = dataError;
+
+    xhr.open("GET", "https://www.amiiboapi.com/api/amiiboseries/");
+    xhr.send();
+}
+
+function getGameSeries() {
+    let xhr = new XMLHttpRequest();
+
+    xhr.onload = (e) => {
+        let options = '<option value="default" selected>Any</option>';
+        let obj = JSON.parse(xhr.responseText);
+        let results = obj.amiibo;
+        for (let i = 0; i< results.length;i++) {
+            options += `<option value="${results[i].name}">${results[i].name}</option>`
+            // console.log(results[i].name);
+        }
+        document.querySelector("#gameSeries").innerHTML = options;
+    }
+
+    xhr.onerror = dataError;
+
+    xhr.open("GET", "https://www.amiiboapi.com/api/gameseries/");
+    xhr.send();
 }
 
 function getData() {
@@ -23,9 +103,9 @@ function getData() {
     term = encodeURIComponent(term);
     url += term;
 
-    let type = document.querySelector("#type").value;
-    url += "&type=" + type;
-    console.log("Here is the url: " + url);
+    // let type = document.querySelector("#type").value;
+    // url += "&type=" + type;
+    // console.log("Here is the url: " + url);
 
     // let gameSeries = document.querySelector("#gameSeries").value;
     // url += "&gameseries=" + gameSeries;

@@ -12,7 +12,7 @@ function init() {
     const searchField = document.querySelector("#searchterm");
     const prefix = "dlm4695-";
     const termKey = prefix + "name";
-    
+
     const storedTerm = localStorage.getItem(termKey);
 
     // sets a default local last search character
@@ -35,7 +35,7 @@ function getAmiiboType() {
         let options = '<option value="default" selected>Any</option>';
         let obj = JSON.parse(xhr.responseText);
         let results = obj.amiibo;
-        for (let i = 0; i< results.length;i++) {
+        for (let i = 0; i < results.length; i++) {
             options += `<option value="${results[i].name}">${results[i].name}</option>`
         }
         document.querySelector("#amiiboType").innerHTML = options;
@@ -54,7 +54,7 @@ function getAmiiboSeries() {
         let options = '<option value="default" selected>Any</option>';
         let obj = JSON.parse(xhr.responseText);
         let results = obj.amiibo;
-        for (let i = 0; i< results.length;i++) {
+        for (let i = 0; i < results.length; i++) {
             options += `<option value="${results[i].name}">${results[i].name}</option>`
         }
         document.querySelector("#amiiboSeries").innerHTML = options;
@@ -73,10 +73,15 @@ function getGameSeries() {
         let options = '<option value="default" selected>Any</option>';
         let obj = JSON.parse(xhr.responseText);
         let results = obj.amiibo;
-        for (let i = 0; i< results.length;i++) {
-            options += `<option value="${results[i].name}">${results[i].name}</option>`
-            // console.log(results[i].name);
-        }
+
+        let uniqueResults = new Set();
+
+        results.forEach(item => {
+            if (!uniqueResults.has(item.name)) {
+                uniqueResults.add(item.name);
+                options += `<option value="${item.name}">${item.name}</option>`;
+            }
+        });
         document.querySelector("#gameSeries").innerHTML = options;
     }
 
@@ -89,8 +94,6 @@ function getGameSeries() {
 function getData() {
     // 1 - main entry point to web service
     const SERVICE_URL = "https://www.amiiboapi.com/api/amiibo/?name=";
-
-    // No API Key required!
 
     // 2 - build up our URL string
     // not necessary for this service endpoint
@@ -107,9 +110,9 @@ function getData() {
     // url += "&type=" + type;
     // console.log("Here is the url: " + url);
 
-    // let gameSeries = document.querySelector("#gameSeries").value;
-    // url += "&gameseries=" + gameSeries;
-    // console.log("Here is the url: " + url);
+    let gameSeries = document.querySelector("#gameSeries").value;
+    url += "&gameseries=" + gameSeries;
+    console.log("Here is the url: " + url);
 
     // 4 - update the UI
     document.querySelector("#debug").innerHTML = `<b>Querying web service with:</b> <a href="${url}" target="_blank">${url}</a>`;
@@ -144,6 +147,7 @@ function dataLoaded(e) {
 
     if (!obj.amiibo || obj.amiibo.length == 0) {
         document.querySelector("#status").innerHTML = "<b>No results found for '" + displayTerm + "'<b>";
+        document.querySelector("#content").innerHTML = "";
         return; // bail out
     }
 

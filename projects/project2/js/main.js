@@ -3,12 +3,13 @@ window.onload = init;
 let displayTerm = "";
 
 function init() {
+    // call functions to display options
     getAmiiboType();
     getAmiiboSeries();
     getGameSeries();
     document.querySelector("#search").onclick = getData;
 
-    // locally saves last search character
+    // setting up local storage key
     const searchField = document.querySelector("#searchterm");
     const prefix = "dlm4695-";
     const termKey = prefix + "name";
@@ -29,8 +30,10 @@ function init() {
 }
 
 function getAmiiboType() {
+    // create a new XHR object
     let xhr = new XMLHttpRequest();
 
+    // set the onload handler
     xhr.onload = (e) => {
         let options = '<option value="default" selected>Any</option>';
         let obj = JSON.parse(xhr.responseText);
@@ -41,13 +44,16 @@ function getAmiiboType() {
         document.querySelector("#amiiboType").innerHTML = options;
     }
 
+    // open connection and send the request
     xhr.open("GET", "https://www.amiiboapi.com/api/type/");
     xhr.send();
 }
 
 function getAmiiboSeries() {
+    // create a new XHR object
     let xhr = new XMLHttpRequest();
 
+    // set the onload handler
     xhr.onload = (e) => {
         let options = '<option value="default" selected>Any</option>';
         let obj = JSON.parse(xhr.responseText);
@@ -58,18 +64,22 @@ function getAmiiboSeries() {
         document.querySelector("#amiiboSeries").innerHTML = options;
     }
 
+    // open connection and send the request
     xhr.open("GET", "https://www.amiiboapi.com/api/amiiboseries/");
     xhr.send();
 }
 
 function getGameSeries() {
+    // create a new XHR object
     let xhr = new XMLHttpRequest();
 
+    // set the onload handler
     xhr.onload = (e) => {
         let options = '<option value="default" selected>Any</option>';
         let obj = JSON.parse(xhr.responseText);
         let results = obj.amiibo;
 
+        // set for parsing through repeated results
         let uniqueResults = new Set();
 
         results.forEach(item => {
@@ -82,19 +92,20 @@ function getGameSeries() {
         document.querySelector("#gameSeries").innerHTML = options;
     }
 
+    // open connection and send the request
     xhr.open("GET", "https://www.amiiboapi.com/api/gameseries/");
     xhr.send();
 }
 
 function getData() {
-    // 1 - main entry point to web service
+    // main entry point to web service
     const SERVICE_URL = "https://www.amiiboapi.com/api/amiibo/?name=";
 
-    // 2 - build up our URL string
+    // build up our URL string
     // not necessary for this service endpoint
     let url = SERVICE_URL;
 
-    // 3 - parse the user entered term we wish to search
+    // parse the user entered term we wish to search
     // not necessary for this service endpoint
     let term = document.querySelector("#searchterm").value.trim();
     displayTerm = term;
@@ -119,27 +130,25 @@ function getData() {
         url += `&gameseries=${encodeURIComponent(gameSeries)}`;
     }
 
-    // 4 - update the UI
-    document.querySelector("#debug").innerHTML = `<b>Querying web service with:</b> <a href="${url}" target="_blank">${url}</a>`;
+    // update the UI
     document.querySelector("#status").innerHTML = "<p>Searching for '" + displayTerm + "'</p>"
 
-    // 5 - create a new XHR object
+    // create a new XHR object
     let xhr = new XMLHttpRequest();
 
-    // 6 - set the onload handler
+    // set the onload handler
     xhr.onload = dataLoaded;
 
-
-    // 8 - open connection and send the request
+    // open connection and send the request
     xhr.open("GET", url);
     xhr.send();
 }
 
 function dataLoaded(e) {
-    // 1 - e.target is the xhr object
+    // e.target is the xhr object
     let xhr = e.target;
 
-    // 3 - turn the text into a parsable JavaScript object
+    // turn the text into a parsable JavaScript object
     let obj = JSON.parse(xhr.responseText);
 
     if (!obj.amiibo || obj.amiibo.length == 0) {
@@ -148,27 +157,29 @@ function dataLoaded(e) {
         return; // bail out
     }
 
-    // 4 - if there is an array of results, loop through them
+    // if there is an array of results, loop through them
     let results = obj.amiibo;
     let bigString = "";
 
-    // iterate through results 
+    // iterate through results data 
     for (const element of results) {
         let result = element;
 
         let image = result.image;
         let character = result.character;
         let amiiboSeries = result.amiiboSeries;
+        let gameSeries =result.gameSeries;
 
         let line = `<div id='result'>`;
         line += `<img src="${image}" title="${character}" />`;
-        line += `<p>${amiiboSeries} series</p>`
+        line += `<p>${amiiboSeries} series</p>`;
+        line += `<p>${gameSeries} series</p>`;
         line += `</div>`;
 
         bigString += line;
     }
 
-    // 5 - display final results to user
+    // display final results to user
     document.querySelector("#content").innerHTML = bigString;
     document.querySelector("#status").innerHTML = "<p><i>Here are " + results.length + " results for '" + displayTerm + "'</i></p>";
 }

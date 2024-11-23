@@ -19,27 +19,35 @@
     </header>
 
     <div id="search-bar">
-        <p>Search Character<input id="searchterm" type="text" size="20" maxlength="20" autofocus value="mario" /></p>
-
-        <div class="widgets">
-            Amiibo Type
-            <select id="amiiboType">
-                <option value="default" selected>Any</option>
-            </select>
+        <div id="first-row">
+            <p>Search Character<input id="searchterm" type="text" size="20" maxlength="20" autofocus value="mario" /></p>
         </div>
 
-        <div class="widgets">
-            Amiibo Series
-            <select id="amiiboSeries">
-                <option value="default" selected>Any</option>
-            </select>
+        <div id="second-row">
+            <p>or</p>
         </div>
 
-        <div class="widgets">
-            Game Series
-            <select id="gameSeries">
-                <option value="default" selected>Any</option>
-            </select>
+        <div id="third-row">
+            <div class="widgets">
+                Amiibo Type
+                <select id="amiiboType">
+                    <option value="default" selected>Any</option>
+                </select>
+            </div>
+
+            <div class="widgets">
+                Amiibo Series
+                <select id="amiiboSeries">
+                    <option value="default" selected>Any</option>
+                </select>
+            </div>
+
+            <div class="widgets">
+                Game Series
+                <select id="gameSeries">
+                    <option value="default" selected>Any</option>
+                </select>
+            </div>
         </div>
 
         <button type="button" id="search" class="green">Search!</button>

@@ -1,0 +1,51 @@
+.jua-regular {
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    font-family: "Jua", 'Courier New', Courier, monospace;
+}
+
+header {
+    text-align: center;
+    padding: 2px 0;
+}
+
+img {
+    width: auto;
+    height: 420px;
+}
+
+p, ul {
+    padding: 10px 0;
+}
+
+p{
+    text-align: justify;
+}
+
+ul {
+    list-style-position: inside;
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 12vw;
+}
+
+#sketch-container {
+    flex: 1;
+}
+
+#text-container {
+    flex: 1;
+}
+
+footer {
+    text-align: center;
+    padding: 5px 0;
+}

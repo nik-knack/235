@@ -62,3 +62,9 @@ h2,
     transform: scale(1.2); 
     z-index: 1; 
   }
+
+footer {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}

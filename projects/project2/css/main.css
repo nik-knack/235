@@ -68,3 +68,10 @@ footer {
     right: 10px;
     top: 10px;
 }
+
+button {
+    background-color: white;
+    border: solid 1px #495057;
+    border-radius: 5px;
+    padding: 5px;
+}

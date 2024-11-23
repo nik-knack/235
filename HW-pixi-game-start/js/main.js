@@ -81,4 +81,64 @@ async function setup() {
 
     // Now our `startScene` is visible
     // Clicking the button calls startGame()
+
+}
+function createLabelsAndButtons() {
+    let buttonStyle = {
+        fill: 0xff0000,
+        fontSize: 48,
+        fontFamily: "Futura",
+    };
+
+    // 1 set up startScene
+    // 1A make top start label
+    let startLabel1 = new PIXI.Text("Circle Blast!", {
+        fill: 0xffffff,
+        fontSize: 96,
+        fontFamily: "Futura",
+        stroke: 0xff0000,
+        strokeThickness: 6,
+    });
+    startLabel1.x = 50;
+    startLabel1.y = 120;
+    startScene.addChild(startLabel1);
+    
+    // 1B make middle start label
+    let startLabel2 = new PIXI.Text("R U worthy..?", {
+        fill: 0xffffff,
+        fontSize: 32,
+        fontFamily: "Futura",
+        fontStyle: "italic",
+        stroke: 0xff0000,
+        strokeThickness: 6,
+    });
+    startLabel2.x = 185;
+    startLabel2.y = 300;
+    startScene.addChild(startLabel2);
+    
+    // 1C make start game button
+    let startButton = new PIXI.Text("Enter, if you dare!", buttonStyle);
+    startButton.x = sceneWidth / 2 - startButton.width / 2;
+    startButton.y = sceneHeight - 100;
+    startButton.interactive = true;
+    startButton.buttonMode = true;
+    startButton.on("pointerup", startGame); //startGame is a function reference
+    startButton.on("pointerover", (e) => (e.target.alpha = 0.7)); // concise arrow function with no brackets
+    startButton.on("pointerout", (e) => (e.currentTarget.alpha = 1.0)); // ditto
+    startScene.addChild(startButton);
+
+    // 2 set up gameScene
+    let textStyle = {
+        fill: 0xffffff,
+        fontSize: 18,
+        fontFamily: "Futura",
+        stroke: 0xff0000,
+        strokeThickness: 4,
+    }
+}
+
+function startGame() {
+    startScene.visible = false;
+    gameOverScene.visible = false;
+    gameScene.visible = true;
 }

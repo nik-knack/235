@@ -135,10 +135,58 @@ function createLabelsAndButtons() {
         stroke: 0xff0000,
         strokeThickness: 4,
     }
+
+    // 2A make score label
+    scoreLabel = new PIXI.Text("", textStyle);
+    scoreLabel.x = 5;
+    scoreLabel.y = 5;
+    gameScene.addChild(scoreLabel);
+    increaseScoreBy(0);
+
+    // 2B make life label
+    lifeLabel = new PIXI.Text("", textStyle);
+    lifeLabel.x = 5;
+    lifeLabel.y= 26;
+    gameScene.addChild(lifeLabel);
+    decreaseLifeBy(0);
+
+    // 3 set up gameOverScene
+    // 3A make game over text
+    let gameOverText = new PIXI.Text("Gae Over!\n :-0", {
+        fill: 0xffffff,
+        fontSize: 64,
+        stroke: 0xFF0000,
+        strokeThickness: 6,
+    });
+    gameOverText.x = sceneWidth / 2 - gameOverText.width / 2;
+    gameOverText.y = sceneHeight / 2 - 160;
+    gameOverScene.addChild(gameOverText);
+
+    // 3B make "play again?" button
+    let playAgainButton = new PIXI.Text("Play Again?", buttonStyle);
+    playAgainButton.x = sceneWidth / 2 - playAgainButton.width / 2;
+    playAgainButton.y = sceneHeight - 100;
+    playAgainButton.interactive = true;
+    playAgainButton.buttonMode = true;
+    playAgainButton.on("pointerup", startGame); // startGame is a function reference
+    playAgainButton.on("pointerover", (e) => (e.target.alpha = 0.7)); // concise arrow function with no brackets
+    playAgainButton.on("pointerout", (e) => (e.currentTarget.alpha = 1.0)); // ditto
+    gameOverScene.addChild(playAgainButton);
 }
 
 function startGame() {
     startScene.visible = false;
     gameOverScene.visible = false;
     gameScene.visible = true;
+}
+
+function increaseScoreBy(value) {
+    score += value;
+    scoreLabel.text = `Score: ${score}`;
+}
+
+function decreaseLifeBy(value){
+    life -= value;
+    life = parseInt(life); //convert to integer
+    lifeLabel.text = `Life: ${life}%`;
 }

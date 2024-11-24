@@ -86,7 +86,55 @@
         // Yes the script tag is in the head section, leave it here.
 
         { // ES6 Block Scope
+            // 5 
+            let selectedElement = null;
 
+            // 6
+            const TRAY_POSITION = { x: 50, y: 500 };
+            const MAX_WORD_LEFT = 770;
+            const LINE_HEIGHT = 30;
+            const WORD_MARGIN = 10;
+            const WORD_SPACING = 8;
+            const MAX_Z_INDEX = 1000;
+
+            // 1 
+            window.onload = function () {
+                setupStartingPoem();
+            }
+
+            // 2 
+            function setupStartingPoem() {
+                setPosition(getWord("gibber"), 150, 100);
+                setPosition(getWord("ing"), 210, 100);
+                setPosition(getWord("Professor"), 253, 103);
+                setPosition(getWord("meep"), 350, 100);
+                setPosition(getWord("s"), 390, 100);
+
+                setPosition(getWord("disagreeable"), 200, 162);
+                setPosition(getWord("ly"), 290, 162);
+                setPosition(getWord("eternal"), 330, 160);
+
+                setPosition(getWord("eldritch"), 260, 230);
+                setPosition(getWord("cyclopean"), 270, 280);
+                setPosition(getWord("horror"), 275, 330);
+            }
+
+            // 3
+            function setPosition(word, wordLeft, wordTop) {
+                word.style.left = wordLeft + "px";
+                word.style.top = wordTop + "px";
+            }
+
+            // 4 
+            function getWord(text) {
+                let allWords = document.querySelectorAll(".word");
+                for (let word of allWords) {
+                    if (word.textContent == text) {
+                        return word; // returns matched word, also breake out of loop
+                    }
+                }
+                // no match - the function will return undefined
+            }
 
 
         } // End ES6 Block Scope
@@ -100,8 +148,8 @@
             <p class="titleWord" id="title1">Magnetic</p>
             <p class="titleWord" id="title2">Poetry</p>
             <p class="titleWord" id="title3">by</p>
-            <p class="titleWord" id="title4">Ace</p>
-            <p class="titleWord" id="title5">Coder</p>
+            <p class="titleWord" id="title4">Dania</p>
+            <p class="titleWord" id="title5">Macias</p>
 
         </div>
     </div>

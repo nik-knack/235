@@ -51,7 +51,8 @@ ul {
 }
 
 footer {
-  justify-items: center;
+  align-self: center;
+  text-align: center;
 }
 
 a:link {
@@ -82,4 +83,3 @@ a:active {
   text-decoration: none;
   outline: 0;
 }
-

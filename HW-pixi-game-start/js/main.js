@@ -358,6 +358,15 @@ function end() {
 function fireBullet() {
     if(paused) return;
 
+    if(score >= 5) {
+        let b1 = new Bullets(0xffffff, ship.x-15, ship.y)
+        let b2 = new Bullets(0xffffff, ship.x+15, ship.y)
+        bullets.push(b1);
+        bullets.push(b2);
+        gameScene.addChild(b1);
+        gameScene.addChild(b2);
+    }
+
     let b = new Bullets(0xffffff, ship.x, ship.y);
     bullets.push(b);
     gameScene.addChild(b);

@@ -70,8 +70,22 @@ async function setup() {
     createLabelsAndButtons();
 
     // #5 - Create ship
+    ship = new Ship(assets.spaceship);
+    gameScene.addChild(ship);
 
     // #6 - Load Sounds
+    shootSound = new Howl({
+        src: ["sounds/shoot.wav"],
+    });
+
+    hitSound = new Howl({
+        src: ["sounds/hit.mp3"],
+    });
+
+    fireballSound = new Howl({
+        src: ["sounds/fireball.mp3"],
+    });
+
 
     // #7 - Load sprite sheet
 

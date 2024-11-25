@@ -99,6 +99,7 @@
 
             // 1 
             window.onload = function () {
+                positionWords();
                 setupStartingPoem();
             }
 
@@ -135,6 +136,42 @@
                 }
                 // no match - the function will return undefined
             }
+
+            // 7
+            function positionWords() {
+                // 8
+                let doMousedown = function (e) {
+                    e.preventDefault();
+                    selectedElement = e.target;
+                    selectedElement.style.zIndex = MAX_Z_INDEX;
+                }
+
+                // 9
+                let allWords = document.querySelectorAll(".word");
+                let wordSpacing = WORD_SPACING;
+                let wordLeft = WORD_MARGIN;
+                let wordTop = TRAY_POSITION.y;
+
+                //10 
+                for (let word of allWords) {
+                    setPosition(word, wordLeft, wordTop)
+                    let wordWidth = word.clientWidth;
+                    wordLeft += wordWidth + wordSpacing;
+                    if (wordLeft >= MAX_WORD_LEFT) {
+                        wordLeft = WORD_MARGIN;
+                        wordTop += LINE_HEIGHT;
+                    }
+                    // 11
+                    word.onmousedown = doMousedown;
+                }
+
+                // make the title words draggable too 
+                document.querySelector("#title1").onmousedown = doMousedown;
+                document.querySelector("#title2").onmousedown = doMousedown;
+                document.querySelector("#title3").onmousedown = doMousedown;
+                document.querySelector("#title4").onmousedown = doMousedown;
+                document.querySelector("#title5").onmousedown = doMousedown;
+            }   // end function positionWords
 
 
         } // End ES6 Block Scope

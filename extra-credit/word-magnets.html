@@ -101,6 +101,7 @@
             window.onload = function () {
                 positionWords();
                 setupStartingPoem();
+                setupDragging();
             }
 
             // 2 
@@ -172,6 +173,40 @@
                 document.querySelector("#title4").onmousedown = doMousedown;
                 document.querySelector("#title5").onmousedown = doMousedown;
             }   // end function positionWords
+
+            // 12 
+            function setupDragging() {
+                // 13 
+                document.onmousemove = function (e) {
+                    e.preventDefault();
+                    if (selectedElement) {
+                        let mousePos = getMousePos(document.body, e);
+                        // adjust position so we drag words from their middle
+                        mousePos.x -= selectedElement.clientWidth / 2;
+                        mousePos.y -= selectedElement.clientHeight / 2;
+
+                        setPosition(selectedElement, mousePos.x, mousePos.y);
+                    }
+                };
+
+                // 14
+                document.onmouseup = function (e) {
+                    if (selectedElement) {
+                        selectedElement.style.zIndex = MAX_Z_INDEX - 1;
+                    }
+                    selectedElement = null;
+                };
+            } // end function setupDragging
+
+            // 15 
+            // Helper
+            function getMousePos(parentElement, event) {
+                let rect = parentElement.getBoundingClientRect();
+                return {
+                    x: event.clientX - rect.left,
+                    y: event.clientY - rect.top
+                };
+            }
 
 
         } // End ES6 Block Scope

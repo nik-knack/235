@@ -121,7 +121,7 @@
 			let selectedCell = cells[row][col];
 			selectedCell.className = 'cellSelected';
 			selectedCell.style.backgroundColor = color;
-			console.log(`${col}, ${row}`)
+			console.log(`${col}, ${row}`);
 		}
 
 		// 9
@@ -130,7 +130,7 @@
 		// 10
 		container.onmousemove = (e) => {
 			e.preventDefault();
-			if (mouseIsDown) fllCell(e);
+			if (mouseIsDown) fillCell(e);
 		};
 
 		// 11

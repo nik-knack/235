@@ -1,0 +1,24 @@
+* {
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+body {
+    margin: 2vh 20%;
+    background-color: #f5f1e1;
+}
+
+header {
+    font-size: xx-large;
+    color: #150377;
+}
+
+h2 {
+    font-size: xx-large;
+    color: #f40a84;
+
+}
+
+p {
+    font-size: x-large;
+    color: #150377;
+}

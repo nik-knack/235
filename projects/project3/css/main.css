@@ -51,6 +51,10 @@ ul {
     margin-top: 20px;
 }
 
+img {
+    border-radius: 10px;
+}
+
 a:link,
 a:visited {
     color: #150377;

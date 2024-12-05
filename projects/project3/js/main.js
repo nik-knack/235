@@ -3,6 +3,8 @@ const app = new PIXI.Application();
 
 // aliases
 let stage;
+let assets;
+let cat, heart, fish, brush;
 
 let sceneWidth, sceneHeight;
 
@@ -29,7 +31,25 @@ window.WebFontConfig = {
     s.parentNode.insertBefore(wf, s);
 })();
 
-setup();
+// Load all assets
+loadImages();
+
+
+
+async function loadImages() {
+    PIXI.Assets.addBundle("sprites", {
+        cat: "media/cat_scaled_8.png",
+        heart: "media/heart_scaled_6.png",
+        fish: "media/fish_scaled_6.png",
+        brush: "media/brush_scaled_6.png",
+    });
+    
+    assets = await PIXI.Assets.loadBundle("sprites", (progress) => {
+        console.log(`progress=${(progress * 100).toFixed(2)}%`); // 0.4288 => 42.88%
+    });
+
+    setup();
+}
 
 async function setup() {
     await app.init({ width: 600, height: 600, background: '#f5f1e1' });
@@ -54,6 +74,7 @@ async function setup() {
     gameOverScene.visible = false;
     stage.addChild(gameOverScene);
 
+    // call createTextAndButtons function
     createTextAndButtons();
 }
 
@@ -88,16 +109,26 @@ function createTextAndButtons() {
         fontSize: 24,
         fontFamily: "Pixelify Sans",
     };
-
+    
+    let playText = new PIXI.Text("Play", textStyle);
+    playText.x = 10;
+    playText.y = 10;
+    gameScene.addChild(playText);
+    
     let hungerText = new PIXI.Text("Hunger", textStyle);
-    hungerText.x = 20;
-    hungerText.y = 20;
+    hungerText.x = 10;
+    hungerText.y = 40;
     gameScene.addChild(hungerText);
 
-    let playText = new PIXI.Text("Play", textStyle);
-    playText.x = 20;
-    playText.y = 50;
-    gameScene.addChild(playText);
+    let hygieneText = new PIXI.Text("Hygiene", textStyle);
+    hygieneText.x = 10;
+    hygieneText.y = 70;
+    gameScene.addChild(hygieneText);
+
+    const heartImage = PIXI.Sprite.from("media/heart_scaled_6.png");
+    heartImage.x = 30;
+    heartImage.y = 10;
+    gameScene.addChild(heartImage);
 }
 
 function startGame() {

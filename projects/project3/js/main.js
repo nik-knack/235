@@ -125,10 +125,15 @@ function createTextAndButtons() {
     hygieneText.y = 70;
     gameScene.addChild(hygieneText);
 
-    const heartImage = PIXI.Sprite.from("media/heart_scaled_6.png");
+    const heartImage = PIXI.Sprite.from(assets.heart);
     heartImage.x = 30;
     heartImage.y = 10;
     gameScene.addChild(heartImage);
+
+    const catImage = PIXI.Sprite.from(assets.cat);
+    catImage.x = sceneWidth / 2 - catImage.width / 2;
+    catImage.y = sceneHeight / 2 - catImage.height / 2;
+    gameScene.addChild(catImage);
 }
 
 function startGame() {

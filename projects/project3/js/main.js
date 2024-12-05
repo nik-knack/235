@@ -39,11 +39,11 @@ loadImages();
 async function loadImages() {
     PIXI.Assets.addBundle("sprites", {
         cat: "media/cat_scaled_8.png",
-        heart: "media/heart_scaled_6.png",
-        fish: "media/fish_scaled_6.png",
-        brush: "media/brush_scaled_6.png",
+        heart: "media/heart_scaled_2x.png",
+        fish: "media/fish_scaled_2x.png",
+        brush: "media/brush_scaled_2x.png",
     });
-    
+
     assets = await PIXI.Assets.loadBundle("sprites", (progress) => {
         console.log(`progress=${(progress * 100).toFixed(2)}%`); // 0.4288 => 42.88%
     });
@@ -109,12 +109,12 @@ function createTextAndButtons() {
         fontSize: 24,
         fontFamily: "Pixelify Sans",
     };
-    
+
     let playText = new PIXI.Text("Play", textStyle);
     playText.x = 10;
     playText.y = 10;
     gameScene.addChild(playText);
-    
+
     let hungerText = new PIXI.Text("Hunger", textStyle);
     hungerText.x = 10;
     hungerText.y = 40;
@@ -126,9 +126,19 @@ function createTextAndButtons() {
     gameScene.addChild(hygieneText);
 
     const heartImage = PIXI.Sprite.from(assets.heart);
-    heartImage.x = 30;
+    heartImage.x = 120;
     heartImage.y = 10;
     gameScene.addChild(heartImage);
+
+    const fishImage = PIXI.Sprite.from(assets.fish);
+    fishImage.x = 120;
+    fishImage.y = 40;
+    gameScene.addChild(fishImage);
+
+    const brushImage = PIXI.Sprite.from(assets.brush);
+    brushImage.x = 120;
+    brushImage.y = 70;
+    gameScene.addChild(brushImage);
 
     const catImage = PIXI.Sprite.from(assets.cat);
     catImage.x = sceneWidth / 2 - catImage.width / 2;

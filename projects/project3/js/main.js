@@ -20,6 +20,11 @@ window.WebFontConfig = {
     },
 };
 
+// css style for icons
+const defaultIcon = "url('/media/cursor_default_6x.png'), auto";
+const hoverIcon = "url('/media/cursor_hover_6x.png'), auto";
+const clickIcon = "url('/media/cursor_click_6x.png'), auto";
+
 // web-font loader script
 (function () {
     const wf = document.createElement('script');
@@ -33,8 +38,6 @@ window.WebFontConfig = {
 
 // Load all assets
 loadImages();
-
-
 
 async function loadImages() {
     PIXI.Assets.addBundle("sprites", {
@@ -76,6 +79,11 @@ async function setup() {
 
     // call createTextAndButtons function
     createTextAndButtons();
+
+    // add custom cursor styles
+    app.renderer.events.cursorStyles.default = defaultIcon;
+    app.renderer.events.cursorStyles.hover = hoverIcon;
+    app.renderer.events.cursorStyles.onclick = clickIcon;
 }
 
 function createTextAndButtons() {

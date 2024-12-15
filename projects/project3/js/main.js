@@ -37,7 +37,7 @@ async function loadContent() {
         buttonDown: "media/button_down_scaled_6x.png",
     })
     PIXI.Assets.addBundle("sprites", {
-        cat: "media/cat_scaled_8.png",
+        cat: "media/cat_scaled_8x.png",
         heart: "media/heart_scaled_2x.png",
         fish: "media/fish_scaled_2x.png",
         brush: "media/brush_scaled_2x.png",

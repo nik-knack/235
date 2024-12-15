@@ -152,6 +152,43 @@ function createTextAndButtons() {
     catImage.x = sceneWidth / 2 - catImage.width / 2;
     catImage.y = sceneHeight / 2 - catImage.height / 2;
     gameScene.addChild(catImage);
+    
+    let button1 = PIXI.Sprite.from(uiButtons.button);
+    button1.x = sceneWidth / 2 - button1.width;
+    button1.y = sceneHeight / 2 + 2*button1.height;
+    button1.interactive = true;
+    button1.buttonMode = true;
+    button1
+        .on("pointerup", onButtonUp)
+        .on("pointerover", onButtonOver)
+        .on("pointerdown", onButtonDown)
+        .on("pointerout", onButtonOut);
+    gameScene.addChild(button1);
+
+    let button2 = PIXI.Sprite.from(uiButtons.button);
+    button2.x = sceneWidth / 2 - button2.width / 2;
+    button2.y = sceneHeight / 2 + 2*button2.height;
+    button2.interactive = true;
+    button2.buttonMode = true;
+    button2
+        .on("pointerup", onButtonUp)
+        .on("pointerover", onButtonOver)
+        .on("pointerdown", onButtonDown)
+        .on("pointerout", onButtonOut);
+    gameScene.addChild(button2);
+
+
+    let button3 = PIXI.Sprite.from(uiButtons.button);
+    button3.x = sceneWidth / 2;
+    button3.y = sceneHeight / 2 + 2*button3.height;
+    button3.interactive = true;
+    button3.buttonMode = true;
+    button3
+        .on("pointerup", onButtonUp)
+        .on("pointerover", onButtonOver)
+        .on("pointerdown", onButtonDown)
+        .on("pointerout", onButtonOut);
+    gameScene.addChild(button3);
 }
 
 function onButtonDown()

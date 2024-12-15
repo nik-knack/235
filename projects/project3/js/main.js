@@ -14,7 +14,7 @@ let gameScene;
 let gameOverScene;
 
 // ui assets
-let uiButtons;
+let buttons;
 
 // custom font
 let pixelifySans;
@@ -31,10 +31,19 @@ async function loadContent() {
     PIXI.Assets.addBundle("fonts", {
         PixelifySans: "media/fonts/PixelifySans-Regular.ttf",
     });
-    PIXI.Assets.addBundle("ui", {
-        button: "media/button_scaled_6x.png",
-        buttonOver: "media/button_over_scaled_6x.png",
-        buttonDown: "media/button_down_scaled_6x.png",
+    PIXI.Assets.addBundle("buttons", {
+        startButton: "media/button_scaled_6x.png",
+        startButtonOver: "media/button_over_scaled_6x.png",
+        startButtonDown: "media/button_down_scaled_6x.png",
+        playButton: "media/clean_button_scaled_4x.png",
+        playButtonOver: "media/clean_over_button_scaled_4x.png",
+        playbuttonDown: "media/clean_down_button_scaled_4x.png",
+        cleanButton: "media/clean_button_scaled_4x.png",
+        cleanButtonOver: "media/clean_over_button_scaled_4x.png",
+        cleanButtonDown: "media/clean_down_button_scaled_4x.png",
+        foodButton: "media/clean_button_scaled_4x.png",
+        foodButtonOver: "media/clean_over_button_scaled_4x.png",
+        foodButtonDown: "media/clean_down_button_scaled_4x.png",
     })
     PIXI.Assets.addBundle("sprites", {
         cat: "media/cat_scaled_8x.png",
@@ -44,7 +53,7 @@ async function loadContent() {
     });
 
     pixelifySans = await PIXI.Assets.loadBundle("fonts");
-    uiButtons = await PIXI.Assets.loadBundle("ui");
+    buttons = await PIXI.Assets.loadBundle("buttons");
     assets = await PIXI.Assets.loadBundle("sprites", (progress) => {
         console.log(`progress=${(progress * 100).toFixed(2)}%`); // 0.4288 => 42.88%
     });
@@ -100,16 +109,16 @@ function createTextAndButtons() {
     title.y = 120;
     startScene.addChild(title);
 
-    let startButton = PIXI.Sprite.from(uiButtons.button);
+    let startButton = PIXI.Sprite.from(buttons.startButton);
     startButton.x = sceneWidth / 2 - startButton.width / 2;
     startButton.y = sceneHeight / 2 + startButton.height;
     startButton.interactive = true;
     startButton.buttonMode = true;
     startButton
         .on("pointerup", startGame)
-        .on("pointerover", onButtonOver)
-        .on("pointerdown", onButtonDown)
-        .on("pointerout", onButtonOut);
+        .on("pointerover", onButtonOver(buttons.startButtonOver))
+        .on("pointerdown", onButtonDown(buttons.startButtonDown))
+        .on("pointerout", onButtonOut(buttons.startButton));
     startScene.addChild(startButton);
 
     let textStyle = {
@@ -153,9 +162,9 @@ function createTextAndButtons() {
     catImage.y = sceneHeight / 2 - catImage.height / 2;
     gameScene.addChild(catImage);
     
-    let button1 = PIXI.Sprite.from(uiButtons.button);
-    button1.x = sceneWidth / 2 - button1.width;
-    button1.y = sceneHeight / 2 + 2*button1.height;
+    let button1 = PIXI.Sprite.from(buttons.cleanButton);
+    button1.x = (sceneWidth / 4)*1 - (button1.width/3)*1;
+    button1.y = sceneHeight / 2 + 3*button1.height;
     button1.interactive = true;
     button1.buttonMode = true;
     button1
@@ -165,9 +174,9 @@ function createTextAndButtons() {
         .on("pointerout", onButtonOut);
     gameScene.addChild(button1);
 
-    let button2 = PIXI.Sprite.from(uiButtons.button);
-    button2.x = sceneWidth / 2 - button2.width / 2;
-    button2.y = sceneHeight / 2 + 2*button2.height;
+    let button2 = PIXI.Sprite.from(buttons.cleanButton);
+    button2.x = (sceneWidth / 4)*2 - (button2.width/3)*2;
+    button2.y = sceneHeight / 2 + 3*button2.height;
     button2.interactive = true;
     button2.buttonMode = true;
     button2
@@ -178,9 +187,9 @@ function createTextAndButtons() {
     gameScene.addChild(button2);
 
 
-    let button3 = PIXI.Sprite.from(uiButtons.button);
-    button3.x = sceneWidth / 2;
-    button3.y = sceneHeight / 2 + 2*button3.height;
+    let button3 = PIXI.Sprite.from(buttons.cleanButton);
+    button3.x = (sceneWidth / 4)*3 - (button3.width/3)*3;
+    button3.y = sceneHeight / 2 + 3*button3.height;
     button3.interactive = true;
     button3.buttonMode = true;
     button3
@@ -189,46 +198,6 @@ function createTextAndButtons() {
         .on("pointerdown", onButtonDown)
         .on("pointerout", onButtonOut);
     gameScene.addChild(button3);
-}
-
-function onButtonDown()
-    {
-        this.isdown = true;
-        this.texture = uiButtons.buttonDown;
-        this.alpha = 1;
-    }
-
-function onButtonUp()
-{
-    this.isdown = false;
-    if (this.isOver)
-    {
-        this.texture = uiButtons.buttonOver;
-    }
-    else
-    {
-        this.texture = uiButtons.button;
-    }
-}
-
-function onButtonOver()
-{
-    this.isOver = true;
-    if (this.isdown)
-    {
-        return;
-    }
-    this.texture = uiButtons.buttonOver;
-}
-
-function onButtonOut()
-{
-    this.isOver = false;
-    if (this.isdown)
-    {
-        return;
-    }
-    this.texture = uiButtons.button;
 }
 
 function startGame() {

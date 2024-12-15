@@ -2,3 +2,8 @@ body {
     display: flex;
     justify-content: center;
 }
+
+@font-face{
+    font-family: "Pixelify Sans";
+    src: url("/media/fonts/PixelifySans-Regular.ttf");
+}

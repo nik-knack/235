@@ -13,33 +13,29 @@ let startScene;
 let gameScene;
 let gameOverScene;
 
-// loading custom font
-window.WebFontConfig = {
-    google: {
-        families: ['Pixelify Sans'],
-    },
-};
+// ui assets
+let uiButtons;
+
+// custom font
+let pixelifySans;
 
 // css style for icons
 const defaultIcon = "url('/media/cursor_default_6x.png'), auto";
 const hoverIcon = "url('/media/cursor_hover_6x.png'), auto";
 const clickIcon = "url('/media/cursor_click_6x.png'), auto";
 
-// web-font loader script
-(function () {
-    const wf = document.createElement('script');
-    wf.src = `${document.location.protocol === 'https:' ? 'https' : 'http'
-        }://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js`;
-    wf.type = 'text/javascript';
-    wf.async = 'true';
-    const s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(wf, s);
-})();
-
 // Load all assets
-loadImages();
+loadContent();
 
-async function loadImages() {
+async function loadContent() {
+    PIXI.Assets.addBundle("fonts", {
+        PixelifySans: "media/fonts/PixelifySans-Regular.ttf",
+    });
+    PIXI.Assets.addBundle("ui", {
+        button: "media/button_scaled_6x.png",
+        buttonOver: "media/button_over_scaled_6x.png",
+        buttonDown: "media/button_down_scaled_6x.png",
+    })
     PIXI.Assets.addBundle("sprites", {
         cat: "media/cat_scaled_8.png",
         heart: "media/heart_scaled_2x.png",
@@ -47,6 +43,8 @@ async function loadImages() {
         brush: "media/brush_scaled_2x.png",
     });
 
+    pixelifySans = await PIXI.Assets.loadBundle("fonts");
+    uiButtons = await PIXI.Assets.loadBundle("ui");
     assets = await PIXI.Assets.loadBundle("sprites", (progress) => {
         console.log(`progress=${(progress * 100).toFixed(2)}%`); // 0.4288 => 42.88%
     });
@@ -93,24 +91,26 @@ function createTextAndButtons() {
         fontFamily: "Pixelify Sans",
     };
 
-    let startButton = new PIXI.Text("Start", buttonStyle);
-    startButton.x = sceneWidth / 2 - startButton.width / 2;
-    startButton.y = sceneHeight - 100;
-    startButton.interactive = true;
-    startButton.buttonMode = true;
-    startButton.on("pointerup", startGame);
-    startButton.on("pointerover", (e) => (e.target.alpha = 0.7));
-    startButton.on("pointerout", (e) => (e.currentTarget.alpha = 1.0));
-    startScene.addChild(startButton);
-
     let title = new PIXI.Text("Shelter Cat", {
-        fill: 0x150377,
-        fontSize: 65,
+        fill: 0xF40A84,
+        fontSize: 85,
         fontFamily: "Pixelify Sans",
     });
     title.x = sceneWidth / 2 - title.width / 2;
     title.y = 120;
     startScene.addChild(title);
+
+    let startButton = PIXI.Sprite.from(uiButtons.button);
+    startButton.x = sceneWidth / 2 - startButton.width / 2;
+    startButton.y = sceneHeight / 2 + startButton.height;
+    startButton.interactive = true;
+    startButton.buttonMode = true;
+    startButton
+        .on("pointerup", startGame)
+        .on("pointerover", onButtonOver)
+        .on("pointerdown", onButtonDown)
+        .on("pointerout", onButtonOut);
+    startScene.addChild(startButton);
 
     let textStyle = {
         fill: 0x150377,
@@ -152,6 +152,46 @@ function createTextAndButtons() {
     catImage.x = sceneWidth / 2 - catImage.width / 2;
     catImage.y = sceneHeight / 2 - catImage.height / 2;
     gameScene.addChild(catImage);
+}
+
+function onButtonDown()
+    {
+        this.isdown = true;
+        this.texture = uiButtons.buttonDown;
+        this.alpha = 1;
+    }
+
+function onButtonUp()
+{
+    this.isdown = false;
+    if (this.isOver)
+    {
+        this.texture = uiButtons.buttonOver;
+    }
+    else
+    {
+        this.texture = uiButtons.button;
+    }
+}
+
+function onButtonOver()
+{
+    this.isOver = true;
+    if (this.isdown)
+    {
+        return;
+    }
+    this.texture = uiButtons.buttonOver;
+}
+
+function onButtonOut()
+{
+    this.isOver = false;
+    if (this.isdown)
+    {
+        return;
+    }
+    this.texture = uiButtons.button;
 }
 
 function startGame() {

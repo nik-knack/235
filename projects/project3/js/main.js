@@ -7,6 +7,11 @@ let stage;
 let assets;
 let cat, heart, fish, brush;
 
+let startPressSFX;
+let buttonPressSFX;
+let gameOverSFX;
+let music;
+
 let sceneWidth, sceneHeight;
 
 let startScene;
@@ -59,8 +64,20 @@ async function loadContent() {
 
     pixelifySans = await PIXI.Assets.loadBundle("fonts");
     buttons = await PIXI.Assets.loadBundle("buttons");
-    assets = await PIXI.Assets.loadBundle("sprites", (progress) => {
-        console.log(`Loading: ${Math.round(progress * 100)}%`); // 0.4288 => 42.88%
+    assets = await PIXI.Assets.loadBundle("sprites");
+
+    // Loading sounds
+    startPressSFX = new Howl({
+        src: ["media/start_press.mp3"],
+    });
+    buttonPressSFX = new Howl({
+        src: ["media/button_press.mp3"],
+    });
+    gameOverSFX = new Howl({
+        src: ["media/game_over.mp3"],
+    });
+    music = new Howl ({
+        src: ["media/floating_cat.mp3"],
     });
 
     setup();
@@ -140,7 +157,10 @@ function createTextAndButtons() {
         400,                               // y position
         null,                               // Width
         null,                               // Height
-        startGame, // OnClick callback
+        () => {
+            startGame();
+            startPressSFX.play();
+        }, // OnClick callback
     );
     startScene.addChild(startButton);
     
@@ -181,8 +201,8 @@ function createTextAndButtons() {
         () => {
             hungerMeter = Math.min(maxMeterValue, hungerMeter + 15); // Increase hunger meter
             updateMeters();
-            console.log("Hunger replenished!");
-        }, // OnClick callback
+            buttonPressSFX.play()
+        },// OnClick callback
     );
     gameScene.addChild(hungerButton);
 
@@ -197,7 +217,7 @@ function createTextAndButtons() {
         () => {
             hygieneMeter = Math.min(maxMeterValue, hygieneMeter + 5); // Increase hygiene meter
             updateMeters();
-            console.log("Hygiene replenished!");
+            buttonPressSFX.play()
         }, // OnClick callback
     );
     gameScene.addChild(hygieneButton);
@@ -213,7 +233,7 @@ function createTextAndButtons() {
         () => {
             playMeter = Math.min(maxMeterValue, playMeter + 10); // Increase play meter
             updateMeters();
-            console.log("Play replenished!");
+            buttonPressSFX.play()
         }, // OnClick callback
     );
     gameScene.addChild(playButton);
@@ -242,8 +262,6 @@ function createTextAndButtons() {
 
 // Starts the game when called
 function startGame() {
-    console.log("startGame Called");
-
     // Reset meter values
     hungerMeter = maxMeterValue;
     hygieneMeter = maxMeterValue;
@@ -310,13 +328,12 @@ function startMeterDecrement() {
         playMeter = Math.max(0, playMeter - meterDecrementRates.play);
 
         updateMeters(); // Redraw bars with new values
-    }, 1000); // Decrement every second
+    }, 500); // Decrement every 0.5 second
 }
 
 // Check for game over (when any meter reaches 0)
 function checkGameOver() {
     if (hungerMeter === 0 || hygieneMeter === 0 || playMeter === 0) {
-        console.log("Game Over!");
         gameScene.visible = false;
         gameOverScene.visible = true;
     }
@@ -324,7 +341,6 @@ function checkGameOver() {
 
 // Starts game by setting the game scene and resetting the meters
 function startGame() {
-    console.log("Starting game...");
     hungerMeter = hygieneMeter = playMeter = maxMeterValue; // Reset all meters
     updateMeters(); // Refresh visual bars
     startScene.visible = false;
@@ -335,4 +351,5 @@ function startGame() {
 // Start the game loop to check for game over condition
 function startGameLoop() {
     app.ticker.add(checkGameOver); // Continuously check for game over
+    music.play();
 }

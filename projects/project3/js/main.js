@@ -166,9 +166,9 @@ function createTextAndButtons() {
     gameScene.addChild(catImage);
 
     let button1 = new Button(
-        "media/clean_button_scaled_4x.png",       // Normal texture
-        "media/clean_over_button_scaled_4x.png", // Hover texture
-        "media/clean_down_button_scaled_4x.png", // Down texture
+        "media/food_button_scaled_4x.png",       // Normal texture
+        "media/food_over_button_scaled_4x.png", // Hover texture
+        "media/food_down_button_scaled_4x.png", // Down texture
         (sceneWidth/4)*1,                               // x position
         sceneWidth/2 + 200,                               // y position
         null,                               // Width

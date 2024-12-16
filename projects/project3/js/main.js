@@ -25,7 +25,7 @@ let hygieneMeter = 50;
 let playMeter = 50;
 
 const maxMeterValue = 50; // Maximum value for any meter
-const meterDecrementRates = { hunger: 1, hygiene: 0.5, play: 0.8 }; // Rates of decrease per second
+const meterDecrementRates = { hunger: 1.5, hygiene: 0.5, play: 1.0 }; // Rates of decrease per second
 
 // visual bars
 let hungerBar, hygieneBar, playBar;
@@ -152,21 +152,6 @@ function createTextAndButtons() {
     playText.y = 70;
     gameScene.addChild(playText);
 
-    const heartImage = PIXI.Sprite.from(assets.heart);
-    heartImage.x = 120;
-    heartImage.y = 10;
-    gameScene.addChild(heartImage);
-
-    const fishImage = PIXI.Sprite.from(assets.fish);
-    fishImage.x = 120;
-    fishImage.y = 40;
-    gameScene.addChild(fishImage);
-
-    const brushImage = PIXI.Sprite.from(assets.brush);
-    brushImage.x = 120;
-    brushImage.y = 70;
-    gameScene.addChild(brushImage);
-
     const catImage = PIXI.Sprite.from(assets.cat);
     catImage.x = sceneWidth / 2 - catImage.width / 2;
     catImage.y = sceneHeight / 2 - catImage.height / 2;
@@ -181,7 +166,7 @@ function createTextAndButtons() {
         null,                               // Width
         null,                               // Height
         () => {
-            hungerMeter = Math.min(maxMeterValue, hungerMeter + 30); // Increase hunger meter
+            hungerMeter = Math.min(maxMeterValue, hungerMeter + 15); // Increase hunger meter
             updateMeters();
             console.log("Hunger replenished!");
         }, // OnClick callback
@@ -197,7 +182,7 @@ function createTextAndButtons() {
         null,                               // Width
         null,                               // Height
         () => {
-            hygieneMeter = Math.min(maxMeterValue, hygieneMeter + 20); // Increase hygiene meter
+            hygieneMeter = Math.min(maxMeterValue, hygieneMeter + 5); // Increase hygiene meter
             updateMeters();
             console.log("Hygiene replenished!");
         }, // OnClick callback
@@ -213,7 +198,7 @@ function createTextAndButtons() {
         null,                               // Width
         null,                               // Height
         () => {
-            playMeter = Math.min(maxMeterValue, playMeter + 25); // Increase play meter
+            playMeter = Math.min(maxMeterValue, playMeter + 10); // Increase play meter
             updateMeters();
             console.log("Play replenished!");
         }, // OnClick callback
@@ -262,41 +247,52 @@ function startGame() {
 function createMeters() {
     const barWidth = 200;
     const barHeight = 20;
-    const xOffset = 180;
+    const xOffset = 110;
     const yStart = 10;
     const barSpacing = 40;
 
     // Hunger Bar
     hungerBar = new PIXI.Graphics();
-    hungerBar.beginFill(0xff0000); // Red color for hunger
+    hungerBar.beginFill(0xF40A84); 
     hungerBar.drawRect(xOffset, yStart, barWidth, barHeight);
     hungerBar.endFill();
     gameScene.addChild(hungerBar);
 
     // Hygiene Bar
     hygieneBar = new PIXI.Graphics();
-    hygieneBar.beginFill(0x00ff00); // Green color for hygiene
+    hygieneBar.beginFill(0x150377); 
     hygieneBar.drawRect(xOffset, yStart + barSpacing, barWidth, barHeight);
     hygieneBar.endFill();
     gameScene.addChild(hygieneBar);
 
     // Play Bar
     playBar = new PIXI.Graphics();
-    playBar.beginFill(0x0000ff); // Blue color for play
+    playBar.beginFill(0xFE998B); 
     playBar.drawRect(xOffset, yStart + barSpacing * 2, barWidth, barHeight);
     playBar.endFill();
     gameScene.addChild(playBar);
 }
 
 function updateMeters() {
+    const barWidth = 200; // Total bar width
+
     // Update hunger bar
-    hungerBar.scale.x = Math.max(0, hungerMeter / maxMeterValue);
+    hungerBar.clear();
+    hungerBar.beginFill(0xF40A84); 
+    hungerBar.drawRect(110, 10, (hungerMeter / maxMeterValue) * barWidth, 20);
+    hungerBar.endFill();
 
     // Update hygiene bar
-    hygieneBar.scale.x = Math.max(0, hygieneMeter / maxMeterValue);
+    hygieneBar.clear();
+    hygieneBar.beginFill(0x150377); 
+    hygieneBar.drawRect(110, 45, (hygieneMeter / maxMeterValue) * barWidth, 20);
+    hygieneBar.endFill();
 
     // Update play bar
-    playBar.scale.x = Math.max(0, playMeter / maxMeterValue);
+    playBar.clear();
+    playBar.beginFill(0xFE998B);
+    playBar.drawRect(110, 80, (playMeter / maxMeterValue) * barWidth, 20);
+    playBar.endFill();
 }
 
 

@@ -1,25 +1,19 @@
 "use strict";
+
+
 const app = new PIXI.Application();
 
-// aliases
+// Game variables and settings
 let stage;
 let assets;
 let cat, heart, fish, brush;
 
 let sceneWidth, sceneHeight;
 
-// game variables
 let startScene;
 let gameScene;
 let gameOverScene;
 
-// ui assets
-let buttons;
-
-// custom font
-let pixelifySans;
-
-// add game bar elements
 let hungerMeter = 50;
 let hygieneMeter = 50;
 let playMeter = 50;
@@ -27,12 +21,15 @@ let playMeter = 50;
 const maxMeterValue = 50; // Maximum value for any meter
 const meterDecrementRates = { hunger: 1.5, hygiene: 0.5, play: 1.0 }; // Rates of decrease per second
 
-// visual bars
+// UI Elements
 let hungerBar, hygieneBar, playBar;
+let pixelifySans;
+let buttons;
 
 // Load all assets
 loadContent();
 
+// Load game assets and setup scenes
 async function loadContent() {
     PIXI.Assets.addBundle("fonts", {
         PixelifySans: "media/fonts/PixelifySans-Regular.ttf",
@@ -61,12 +58,14 @@ async function loadContent() {
     pixelifySans = await PIXI.Assets.loadBundle("fonts");
     buttons = await PIXI.Assets.loadBundle("buttons");
     assets = await PIXI.Assets.loadBundle("sprites", (progress) => {
-        console.log(`progress=${(progress * 100).toFixed(2)}%`); // 0.4288 => 42.88%
+        console.log(`Loading: ${Math.round(progress * 100)}%`); // 0.4288 => 42.88%
     });
 
     setup();
 }
 
+
+// Initialize game scenes and settings
 async function setup() {
     await app.init({ width: 600, height: 600, background: '#f5f1e1' });
 
@@ -76,39 +75,51 @@ async function setup() {
     sceneWidth = app.renderer.width;
     sceneHeight = app.renderer.height;
 
-    // Create the `start` scene
+    // Create scenes
+    createScenes();
+
+    // Create UI elements
+    createTextAndButtons();
+
+    // Set up custom cursor styles
+    setupCursorStyles();
+
+    // Create meters bars and start meter decrement
+    createMeters(); 
+    startMeterDecrement(); 
+
+    // Starts the game loop for game over check
+    startGameLoop(); 
+}
+
+// Create scenes for start, game, and game over
+function createScenes() {
     startScene = new PIXI.Container();
     stage.addChild(startScene);
 
-    // Create the main `game` scene and make it invisible
     gameScene = new PIXI.Container();
     gameScene.visible = false;
     stage.addChild(gameScene);
 
-    // Create the `gameOver` scene and make it invisible
     gameOverScene = new PIXI.Container();
     gameOverScene.visible = false;
     stage.addChild(gameOverScene);
+}
 
-    // css style for custom cursor icons
+// Set up custom cursor styles for game interaction
+function setupCursorStyles() {
     const defaultIcon = "url('/media/cursor_default_6x.png') 39 0, auto";
     const hoverIcon = "url('/media/cursor_hover_6x.png') 39 0, auto";
     const clickIcon = "url('/media/cursor_click_6x.png') 39 0, auto";
 
-    // call createTextAndButtons function
-    createTextAndButtons();
-
-    // add custom cursor styles
     app.renderer.events.cursorStyles.default = defaultIcon;
     app.renderer.events.cursorStyles.hover = hoverIcon;
     app.renderer.events.cursorStyles.onclick = clickIcon;
-
-    createMeters(); // Create meter bars
-    startMeterDecrement(); // Start decrementing meters
-    startGameLoop(); // Start game loop for game over check
 }
 
+// Create UI elements 
 function createTextAndButtons() {
+    // Title text
     let title = new PIXI.Text("Shelter Cat", {
         fill: 0xF40A84,
         fontSize: 85,
@@ -118,7 +129,7 @@ function createTextAndButtons() {
     title.y = 120;
     startScene.addChild(title);
 
-    // Create start button with button class
+    // Start button
     let startButton = new Button(
         "media/button_scaled_6x.png",       // Normal texture
         "media/button_over_scaled_6x.png", // Hover texture
@@ -244,6 +255,7 @@ function startGame() {
     gameOverScene.visible = false;
 }
 
+// Create meter bars for hunger, hygiene, and play
 function createMeters() {
     const barWidth = 200;
     const barHeight = 20;
@@ -273,6 +285,7 @@ function createMeters() {
     gameScene.addChild(playBar);
 }
 
+// Update the visual appearance of all meters
 function updateMeters() {
     const barWidth = 200; // Total bar width
 
@@ -295,7 +308,7 @@ function updateMeters() {
     playBar.endFill();
 }
 
-
+// Start the process of meter decrement every second
 function startMeterDecrement() {
     setInterval(() => {
         hungerMeter = Math.max(0, hungerMeter - meterDecrementRates.hunger);
@@ -306,6 +319,8 @@ function startMeterDecrement() {
     }, 1000); // Decrement every second
 }
 
+
+// Check for game over (when any meter reaches 0)
 function checkGameOver() {
     if (hungerMeter === 0 || hygieneMeter === 0 || playMeter === 0) {
         console.log("Game Over!");
@@ -323,6 +338,7 @@ function startGame() {
     gameOverScene.visible = false;
 }
 
+// Start the game loop to check for game over condition
 function startGameLoop() {
     app.ticker.add(checkGameOver); // Continuously check for game over
 }

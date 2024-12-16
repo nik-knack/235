@@ -36,7 +36,7 @@ loadContent();
 // Load game assets and setup scenes
 async function loadContent() {
     PIXI.Assets.addBundle("fonts", {
-        PixelifySans: "media/fonts/PixelifySans-Regular.ttf",
+        PixelifySans: "media/PixelifySans-Regular.ttf",
     });
     PIXI.Assets.addBundle("buttons", {
         startButton: "media/button_scaled_6x.png",

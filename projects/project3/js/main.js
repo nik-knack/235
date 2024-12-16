@@ -255,7 +255,7 @@ function startGame() {
     gameOverScene.visible = false;
 }
 
-// Create meter bars for hunger, hygiene, and play
+// Function to create the meter bars on the game scene
 function createMeters() {
     const barWidth = 200;
     const barHeight = 20;
@@ -263,50 +263,42 @@ function createMeters() {
     const yStart = 10;
     const barSpacing = 40;
 
-    // Hunger Bar
-    hungerBar = new PIXI.Graphics();
-    hungerBar.beginFill(0xF40A84); 
-    hungerBar.drawRect(xOffset, yStart, barWidth, barHeight);
-    hungerBar.endFill();
-    gameScene.addChild(hungerBar);
-
-    // Hygiene Bar
-    hygieneBar = new PIXI.Graphics();
-    hygieneBar.beginFill(0x150377); 
-    hygieneBar.drawRect(xOffset, yStart + barSpacing, barWidth, barHeight);
-    hygieneBar.endFill();
-    gameScene.addChild(hygieneBar);
-
-    // Play Bar
-    playBar = new PIXI.Graphics();
-    playBar.beginFill(0xFE998B); 
-    playBar.drawRect(xOffset, yStart + barSpacing * 2, barWidth, barHeight);
-    playBar.endFill();
-    gameScene.addChild(playBar);
+    // Create the meter bars
+    hungerBar = createMeterBar(0xF40A84, xOffset, yStart, barWidth, barHeight);
+    hygieneBar = createMeterBar(0x150377, xOffset, yStart + barSpacing, barWidth, barHeight);
+    playBar = createMeterBar(0xFE998B, xOffset, yStart + barSpacing * 2, barWidth, barHeight);
 }
 
-// Update the visual appearance of all meters
+// Helper function to create a single meter bar with a specific color
+function createMeterBar(color, x, y, width, height) {
+    const bar = new PIXI.Graphics();
+    bar.beginFill(color);
+    bar.drawRect(x, y, width, height);
+    bar.endFill();
+    gameScene.addChild(bar);
+    return bar;
+}
+
+// Function to update the visual appearance of all meters
 function updateMeters() {
-    const barWidth = 200; // Total bar width
+    const barWidth = 200; // Total width of the bars
 
-    // Update hunger bar
-    hungerBar.clear();
-    hungerBar.beginFill(0xF40A84); 
-    hungerBar.drawRect(110, 10, (hungerMeter / maxMeterValue) * barWidth, 20);
-    hungerBar.endFill();
-
-    // Update hygiene bar
-    hygieneBar.clear();
-    hygieneBar.beginFill(0x150377); 
-    hygieneBar.drawRect(110, 45, (hygieneMeter / maxMeterValue) * barWidth, 20);
-    hygieneBar.endFill();
-
-    // Update play bar
-    playBar.clear();
-    playBar.beginFill(0xFE998B);
-    playBar.drawRect(110, 80, (playMeter / maxMeterValue) * barWidth, 20);
-    playBar.endFill();
+    // Update each meter bar based on its value
+    updateMeterBar(hungerBar, hungerMeter, 110, 10, barWidth, 0xF40A84);
+    updateMeterBar(hygieneBar, hygieneMeter, 110, 45, barWidth, 0x150377);
+    updateMeterBar(playBar, playMeter, 110, 80, barWidth, 0xFE998B);
 }
+
+// Helper function to update a single meter bar based on the current meter value
+function updateMeterBar(bar, meterValue, x, y, maxWidth, color) {
+    const width = (meterValue / maxMeterValue) * maxWidth;
+
+    bar.clear();
+    bar.beginFill(color); 
+    bar.drawRect(x, y, width, 20);
+    bar.endFill();
+}
+
 
 // Start the process of meter decrement every second
 function startMeterDecrement() {

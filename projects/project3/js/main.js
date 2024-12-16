@@ -19,10 +19,8 @@ let buttons;
 // custom font
 let pixelifySans;
 
-// css style for icons
-const defaultIcon = "url('/media/cursor_default_6x.png'), auto";
-const hoverIcon = "url('/media/cursor_hover_6x.png'), auto";
-const clickIcon = "url('/media/cursor_click_6x.png'), auto";
+// cursor image sizes
+const cursorSize = 78;
 
 // Load all assets
 loadContent();
@@ -83,6 +81,11 @@ async function setup() {
     gameOverScene = new PIXI.Container();
     gameOverScene.visible = false;
     stage.addChild(gameOverScene);
+
+    // css style for custom cursor icons
+    const defaultIcon = "url('/media/cursor_default_6x.png') 39 0, auto";
+    const hoverIcon = "url('/media/cursor_hover_6x.png') 39 0, auto";
+    const clickIcon = "url('/media/cursor_click_6x.png') 39 0, auto";
 
     // call createTextAndButtons function
     createTextAndButtons();
@@ -169,7 +172,7 @@ function createTextAndButtons() {
         "media/clean_button_scaled_4x.png",       // Normal texture
         "media/clean_over_button_scaled_4x.png", // Hover texture
         "media/clean_down_button_scaled_4x.png", // Down texture
-        (sceneWidth/3)*1,                               // x position
+        (sceneWidth/4)*1,                               // x position
         sceneWidth/2 + 200,                               // y position
         null,                               // Width
         null,                               // Height
@@ -181,7 +184,7 @@ function createTextAndButtons() {
         "media/clean_button_scaled_4x.png",       // Normal texture
         "media/clean_over_button_scaled_4x.png", // Hover texture
         "media/clean_down_button_scaled_4x.png", // Down texture
-        (sceneWidth/3)*2,                               // x position
+        (sceneWidth/4)*2,                               // x position
         sceneWidth/2 + 200,                               // y position
         null,                               // Width
         null,                               // Height
@@ -193,7 +196,7 @@ function createTextAndButtons() {
         "media/clean_button_scaled_4x.png",       // Normal texture
         "media/clean_over_button_scaled_4x.png", // Hover texture
         "media/clean_down_button_scaled_4x.png", // Down texture
-        (sceneWidth/3)*3,                               // x position
+        (sceneWidth/4)*3,                               // x position
         sceneWidth/2 + 200,                               // y position
         null,                               // Width
         null,                               // Height

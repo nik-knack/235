@@ -47,6 +47,9 @@ async function loadContent() {
         foodButton: "media/food_button_scaled_4x.png",
         foodButtonOver: "media/food_over_button_scaled_4x.png",
         foodButtonDown: "media/food_down_button_scaled_4x.png",
+        playAgainButton: "media/play_again_button_scaled_5x.png",
+        playAgainButtonOver: "media/play_again_over_button_scaled_5x.png",
+        playAgainButtonDown: "media/play_again_down_button_scaled_5x.png",
     })
     PIXI.Assets.addBundle("sprites", {
         cat: "media/cat_scaled_8x.png",
@@ -226,9 +229,9 @@ function createTextAndButtons() {
     gameOverScene.addChild(gameOver);
 
     let playAgainButton = new Button(
-        "media/button_scaled_6x.png",       // Normal texture
-        "media/button_over_scaled_6x.png", // Hover texture
-        "media/button_down_scaled_6x.png", // Down texture
+        "media/play_again_button_scaled_5x.png",       // Normal texture
+        "media/play_again_over_button_scaled_5x.png", // Hover texture
+        "media/play_again_down_button_scaled_5x.png", // Down texture
         sceneWidth/2,                               // x position
         400,                               // y position
         null,                               // Width
@@ -238,6 +241,7 @@ function createTextAndButtons() {
     gameOverScene.addChild(playAgainButton);
 }
 
+// Starts the game when called
 function startGame() {
     console.log("startGame Called");
 
@@ -298,7 +302,6 @@ function updateMeterBar(bar, meterValue, x, y, maxWidth, color) {
     bar.drawRect(x, y, width, 20);
     bar.endFill();
 }
-
 
 // Start the process of meter decrement every second
 function startMeterDecrement() {

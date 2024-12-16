@@ -19,6 +19,17 @@ let buttons;
 // custom font
 let pixelifySans;
 
+// add game bar elements
+let hungerMeter = 50;
+let hygieneMeter = 50;
+let playMeter = 50;
+
+const maxMeterValue = 50; // Maximum value for any meter
+const meterDecrementRates = { hunger: 1, hygiene: 0.5, play: 0.8 }; // Rates of decrease per second
+
+// visual bars
+let hungerBar, hygieneBar, playBar;
+
 // Load all assets
 loadContent();
 
@@ -30,15 +41,15 @@ async function loadContent() {
         startButton: "media/button_scaled_6x.png",
         startButtonOver: "media/button_over_scaled_6x.png",
         startButtonDown: "media/button_down_scaled_6x.png",
-        playButton: "media/clean_button_scaled_4x.png",
-        playButtonOver: "media/clean_over_button_scaled_4x.png",
-        playbuttonDown: "media/clean_down_button_scaled_4x.png",
+        playButton: "media/play_button_scaled_4x.png",
+        playButtonOver: "media/play_over_button_scaled_4x.png",
+        playbuttonDown: "media/play_down_button_scaled_4x.png",
         cleanButton: "media/clean_button_scaled_4x.png",
         cleanButtonOver: "media/clean_over_button_scaled_4x.png",
         cleanButtonDown: "media/clean_down_button_scaled_4x.png",
-        foodButton: "media/clean_button_scaled_4x.png",
-        foodButtonOver: "media/clean_over_button_scaled_4x.png",
-        foodButtonDown: "media/clean_down_button_scaled_4x.png",
+        foodButton: "media/food_button_scaled_4x.png",
+        foodButtonOver: "media/food_over_button_scaled_4x.png",
+        foodButtonDown: "media/food_down_button_scaled_4x.png",
     })
     PIXI.Assets.addBundle("sprites", {
         cat: "media/cat_scaled_8x.png",
@@ -91,15 +102,13 @@ async function setup() {
     app.renderer.events.cursorStyles.default = defaultIcon;
     app.renderer.events.cursorStyles.hover = hoverIcon;
     app.renderer.events.cursorStyles.onclick = clickIcon;
+
+    createMeters(); // Create meter bars
+    startMeterDecrement(); // Start decrementing meters
+    startGameLoop(); // Start game loop for game over check
 }
 
 function createTextAndButtons() {
-    let buttonStyle = {
-        fill: 0xf40a84,
-        fontSize: 48,
-        fontFamily: "Pixelify Sans",
-    };
-
     let title = new PIXI.Text("Shelter Cat", {
         fill: 0xF40A84,
         fontSize: 85,
@@ -120,8 +129,6 @@ function createTextAndButtons() {
         null,                               // Height
         startGame, // OnClick callback
     );
-    
-    // Add the button to start scene
     startScene.addChild(startButton);
     
     let textStyle = {
@@ -130,20 +137,20 @@ function createTextAndButtons() {
         fontFamily: "Pixelify Sans",
     };
 
-    let playText = new PIXI.Text("Play", textStyle);
-    playText.x = 10;
-    playText.y = 10;
-    gameScene.addChild(playText);
-
     let hungerText = new PIXI.Text("Hunger", textStyle);
     hungerText.x = 10;
-    hungerText.y = 40;
+    hungerText.y = 10;
     gameScene.addChild(hungerText);
 
     let hygieneText = new PIXI.Text("Hygiene", textStyle);
     hygieneText.x = 10;
-    hygieneText.y = 70;
+    hygieneText.y = 40;
     gameScene.addChild(hygieneText);
+
+    let playText = new PIXI.Text("Play", textStyle);
+    playText.x = 10;
+    playText.y = 70;
+    gameScene.addChild(playText);
 
     const heartImage = PIXI.Sprite.from(assets.heart);
     heartImage.x = 120;
@@ -165,7 +172,7 @@ function createTextAndButtons() {
     catImage.y = sceneHeight / 2 - catImage.height / 2;
     gameScene.addChild(catImage);
 
-    let button1 = new Button(
+    let hungerButton = new Button(
         "media/food_button_scaled_4x.png",       // Normal texture
         "media/food_over_button_scaled_4x.png", // Hover texture
         "media/food_down_button_scaled_4x.png", // Down texture
@@ -173,11 +180,15 @@ function createTextAndButtons() {
         sceneWidth/2 + 200,                               // y position
         null,                               // Width
         null,                               // Height
-        () => {console.log("Food button clicked!");}, // OnClick callback
+        () => {
+            hungerMeter = Math.min(maxMeterValue, hungerMeter + 30); // Increase hunger meter
+            updateMeters();
+            console.log("Hunger replenished!");
+        }, // OnClick callback
     );
-    gameScene.addChild(button1);
+    gameScene.addChild(hungerButton);
 
-    let button2 = new Button(
+    let hygieneButton = new Button(
         "media/clean_button_scaled_4x.png",       // Normal texture
         "media/clean_over_button_scaled_4x.png", // Hover texture
         "media/clean_down_button_scaled_4x.png", // Down texture
@@ -185,51 +196,140 @@ function createTextAndButtons() {
         sceneWidth/2 + 200,                               // y position
         null,                               // Width
         null,                               // Height
-        () => {console.log("Clean button clicked!");}, // OnClick callback
+        () => {
+            hygieneMeter = Math.min(maxMeterValue, hygieneMeter + 20); // Increase hygiene meter
+            updateMeters();
+            console.log("Hygiene replenished!");
+        }, // OnClick callback
     );
-    gameScene.addChild(button2);
+    gameScene.addChild(hygieneButton);
 
-    let button3 = new Button(
-        "media/clean_button_scaled_4x.png",       // Normal texture
-        "media/clean_over_button_scaled_4x.png", // Hover texture
-        "media/clean_down_button_scaled_4x.png", // Down texture
+    let playButton = new Button(
+        "media/play_button_scaled_4x.png",       // Normal texture
+        "media/play_over_button_scaled_4x.png", // Hover texture
+        "media/play_down_button_scaled_4x.png", // Down texture
         (sceneWidth/4)*3,                               // x position
         sceneWidth/2 + 200,                               // y position
         null,                               // Width
         null,                               // Height
-        () => {console.log("Play button clicked!");}, // OnClick callback
+        () => {
+            playMeter = Math.min(maxMeterValue, playMeter + 25); // Increase play meter
+            updateMeters();
+            console.log("Play replenished!");
+        }, // OnClick callback
     );
-    gameScene.addChild(button3);
+    gameScene.addChild(playButton);
 
-    // let button1 = PIXI.Sprite.from(buttons.cleanButton);
-    // button2.x = (sceneWidth / 4)*2 - (button2.width/3)*2;
-    // button2.y = sceneHeight / 2 + 3*button2.height;
-    // button2.interactive = true;
-    // button2.buttonMode = true;
-    // button2
-    //     .on("pointerup", onButtonUp)
-    //     .on("pointerover", onButtonOver)
-    //     .on("pointerdown", onButtonDown)
-    //     .on("pointerout", onButtonOut);
-    // gameScene.addChild(button2);
+    let gameOver = new PIXI.Text("Game Over :(", {
+        fill: 0xF40A84,
+        fontSize: 85,
+        fontFamily: "Pixelify Sans",
+    });
+    gameOver.x = sceneWidth / 2 - gameOver.width / 2;
+    gameOver.y = 120;
+    gameOverScene.addChild(gameOver);
 
-
-    // let button3 = PIXI.Sprite.from(buttons.cleanButton);
-    // button3.x = (sceneWidth / 4)*3 - (button3.width/3)*3;
-    // button3.y = sceneHeight / 2 + 3*button3.height;
-    // button3.interactive = true;
-    // button3.buttonMode = true;
-    // button3
-    //     .on("pointerup", onButtonUp)
-    //     .on("pointerover", onButtonOver)
-    //     .on("pointerdown", onButtonDown)
-    //     .on("pointerout", onButtonOut);
-    // gameScene.addChild(button3);
+    let playAgainButton = new Button(
+        "media/button_scaled_6x.png",       // Normal texture
+        "media/button_over_scaled_6x.png", // Hover texture
+        "media/button_down_scaled_6x.png", // Down texture
+        sceneWidth/2,                               // x position
+        400,                               // y position
+        null,                               // Width
+        null,                               // Height
+        startGame, // OnClick callback
+    );
+    gameOverScene.addChild(playAgainButton);
 }
 
 function startGame() {
     console.log("startGame Called");
+
+    // Reset meter values
+    hungerMeter = maxMeterValue;
+    hygieneMeter = maxMeterValue;
+    playMeter = maxMeterValue;
+
+    // Update meters visually
+    updateMeters();
+
+    // Show game scene and hide others
     startScene.visible = false;
     gameScene.visible = true;
     gameOverScene.visible = false;
 }
+
+function createMeters() {
+    const barWidth = 200;
+    const barHeight = 20;
+    const xOffset = 180;
+    const yStart = 10;
+    const barSpacing = 40;
+
+    // Hunger Bar
+    hungerBar = new PIXI.Graphics();
+    hungerBar.beginFill(0xff0000); // Red color for hunger
+    hungerBar.drawRect(xOffset, yStart, barWidth, barHeight);
+    hungerBar.endFill();
+    gameScene.addChild(hungerBar);
+
+    // Hygiene Bar
+    hygieneBar = new PIXI.Graphics();
+    hygieneBar.beginFill(0x00ff00); // Green color for hygiene
+    hygieneBar.drawRect(xOffset, yStart + barSpacing, barWidth, barHeight);
+    hygieneBar.endFill();
+    gameScene.addChild(hygieneBar);
+
+    // Play Bar
+    playBar = new PIXI.Graphics();
+    playBar.beginFill(0x0000ff); // Blue color for play
+    playBar.drawRect(xOffset, yStart + barSpacing * 2, barWidth, barHeight);
+    playBar.endFill();
+    gameScene.addChild(playBar);
+}
+
+function updateMeters() {
+    // Update hunger bar
+    hungerBar.scale.x = Math.max(0, hungerMeter / maxMeterValue);
+
+    // Update hygiene bar
+    hygieneBar.scale.x = Math.max(0, hygieneMeter / maxMeterValue);
+
+    // Update play bar
+    playBar.scale.x = Math.max(0, playMeter / maxMeterValue);
+}
+
+
+function startMeterDecrement() {
+    setInterval(() => {
+        hungerMeter = Math.max(0, hungerMeter - meterDecrementRates.hunger);
+        hygieneMeter = Math.max(0, hygieneMeter - meterDecrementRates.hygiene);
+        playMeter = Math.max(0, playMeter - meterDecrementRates.play);
+
+        updateMeters(); // Redraw bars with new values
+    }, 1000); // Decrement every second
+}
+
+function checkGameOver() {
+    if (hungerMeter === 0 || hygieneMeter === 0 || playMeter === 0) {
+        console.log("Game Over!");
+        gameScene.visible = false;
+        gameOverScene.visible = true;
+    }
+}
+
+function startGame() {
+    console.log("Starting game...");
+    hungerMeter = hygieneMeter = playMeter = maxMeterValue; // Reset all meters
+    updateMeters(); // Refresh visual bars
+    startScene.visible = false;
+    gameScene.visible = true;
+    gameOverScene.visible = false;
+}
+
+function startGameLoop() {
+    app.ticker.add(checkGameOver); // Continuously check for game over
+}
+
+
+

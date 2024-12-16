@@ -109,18 +109,21 @@ function createTextAndButtons() {
     title.y = 120;
     startScene.addChild(title);
 
-    let startButton = PIXI.Sprite.from(buttons.startButton);
-    startButton.x = sceneWidth / 2 - startButton.width / 2;
-    startButton.y = sceneHeight / 2 + startButton.height;
-    startButton.interactive = true;
-    startButton.buttonMode = true;
-    startButton
-        .on("pointerup", startGame)
-        .on("pointerover", onButtonOver(buttons.startButtonOver))
-        .on("pointerdown", onButtonDown(buttons.startButtonDown))
-        .on("pointerout", onButtonOut(buttons.startButton));
+    // Create start button with button class
+    let startButton = new Button(
+        "media/button_scaled_6x.png",       // Normal texture
+        "media/button_over_scaled_6x.png", // Hover texture
+        "media/button_down_scaled_6x.png", // Down texture
+        sceneWidth/2,                               // x position
+        400,                               // y position
+        null,                               // Width
+        null,                               // Height
+        startGame, // OnClick callback
+    );
+    
+    // Add the button to start scene
     startScene.addChild(startButton);
-
+    
     let textStyle = {
         fill: 0x150377,
         fontSize: 24,
@@ -161,43 +164,67 @@ function createTextAndButtons() {
     catImage.x = sceneWidth / 2 - catImage.width / 2;
     catImage.y = sceneHeight / 2 - catImage.height / 2;
     gameScene.addChild(catImage);
-    
-    let button1 = PIXI.Sprite.from(buttons.cleanButton);
-    button1.x = (sceneWidth / 4)*1 - (button1.width/3)*1;
-    button1.y = sceneHeight / 2 + 3*button1.height;
-    button1.interactive = true;
-    button1.buttonMode = true;
-    button1
-        .on("pointerup", onButtonUp)
-        .on("pointerover", onButtonOver)
-        .on("pointerdown", onButtonDown)
-        .on("pointerout", onButtonOut);
+
+    let button1 = new Button(
+        "media/clean_button_scaled_4x.png",       // Normal texture
+        "media/clean_over_button_scaled_4x.png", // Hover texture
+        "media/clean_down_button_scaled_4x.png", // Down texture
+        (sceneWidth/3)*1,                               // x position
+        sceneWidth/2 + 200,                               // y position
+        null,                               // Width
+        null,                               // Height
+        () => {console.log("Food button clicked!");}, // OnClick callback
+    );
     gameScene.addChild(button1);
 
-    let button2 = PIXI.Sprite.from(buttons.cleanButton);
-    button2.x = (sceneWidth / 4)*2 - (button2.width/3)*2;
-    button2.y = sceneHeight / 2 + 3*button2.height;
-    button2.interactive = true;
-    button2.buttonMode = true;
-    button2
-        .on("pointerup", onButtonUp)
-        .on("pointerover", onButtonOver)
-        .on("pointerdown", onButtonDown)
-        .on("pointerout", onButtonOut);
+    let button2 = new Button(
+        "media/clean_button_scaled_4x.png",       // Normal texture
+        "media/clean_over_button_scaled_4x.png", // Hover texture
+        "media/clean_down_button_scaled_4x.png", // Down texture
+        (sceneWidth/3)*2,                               // x position
+        sceneWidth/2 + 200,                               // y position
+        null,                               // Width
+        null,                               // Height
+        () => {console.log("Clean button clicked!");}, // OnClick callback
+    );
     gameScene.addChild(button2);
 
-
-    let button3 = PIXI.Sprite.from(buttons.cleanButton);
-    button3.x = (sceneWidth / 4)*3 - (button3.width/3)*3;
-    button3.y = sceneHeight / 2 + 3*button3.height;
-    button3.interactive = true;
-    button3.buttonMode = true;
-    button3
-        .on("pointerup", onButtonUp)
-        .on("pointerover", onButtonOver)
-        .on("pointerdown", onButtonDown)
-        .on("pointerout", onButtonOut);
+    let button3 = new Button(
+        "media/clean_button_scaled_4x.png",       // Normal texture
+        "media/clean_over_button_scaled_4x.png", // Hover texture
+        "media/clean_down_button_scaled_4x.png", // Down texture
+        (sceneWidth/3)*3,                               // x position
+        sceneWidth/2 + 200,                               // y position
+        null,                               // Width
+        null,                               // Height
+        () => {console.log("Play button clicked!");}, // OnClick callback
+    );
     gameScene.addChild(button3);
+
+    // let button1 = PIXI.Sprite.from(buttons.cleanButton);
+    // button2.x = (sceneWidth / 4)*2 - (button2.width/3)*2;
+    // button2.y = sceneHeight / 2 + 3*button2.height;
+    // button2.interactive = true;
+    // button2.buttonMode = true;
+    // button2
+    //     .on("pointerup", onButtonUp)
+    //     .on("pointerover", onButtonOver)
+    //     .on("pointerdown", onButtonDown)
+    //     .on("pointerout", onButtonOut);
+    // gameScene.addChild(button2);
+
+
+    // let button3 = PIXI.Sprite.from(buttons.cleanButton);
+    // button3.x = (sceneWidth / 4)*3 - (button3.width/3)*3;
+    // button3.y = sceneHeight / 2 + 3*button3.height;
+    // button3.interactive = true;
+    // button3.buttonMode = true;
+    // button3
+    //     .on("pointerup", onButtonUp)
+    //     .on("pointerover", onButtonOver)
+    //     .on("pointerdown", onButtonDown)
+    //     .on("pointerout", onButtonOut);
+    // gameScene.addChild(button3);
 }
 
 function startGame() {

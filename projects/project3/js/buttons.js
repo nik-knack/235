@@ -1,65 +1,56 @@
-class Button {
-    constructor(textureNormal, textureOver, textureDown, x, y, width=null, height=null, onClick=null){
-        // Create button sprite from the normal
-        this.button = PIXI.Sprite.from(textureNormal);
+class Button extends PIXI.Sprite {
+    constructor(textureNormal, textureOver, textureDown, x, y, width = null, height = null, onClick = null) {
+        // Call the PIXI.Sprite constructor with the normal texture
+        super(PIXI.Texture.from(textureNormal));
         
-        // Set position to middle of button texture
-        this.button.x = x - this.button.width / 2;
-        this.button.y = y - this.button.height / 2;
-
-        // Use provided width and height or fallback on sprite's natural size
-        if (width && height){
-            this.button.width = width;
-            this.button.height = height;
+        // If width and height are not provided, use the texture's actual size
+        if (!width || !height) {
+            // Use the width and height of the texture if not provided explicitly
+            width = this.width;
+            height = this.height;
         }
+
+        // Set the width and height of the button
+        this.width = width;
+        this.height = height;
+
+        // Set position to the center of the button's image
+        this.x = x - this.width / 2;
+        this.y = y - this.height / 2;
 
         // Store the textures for different states
-        this.textureNormal = textureNormal;
-        this.textureOver = textureOver;
-        this.textureDown = textureDown;
+        this.textureNormal = PIXI.Texture.from(textureNormal);
+        this.textureOver = PIXI.Texture.from(textureOver);
+        this.textureDown = PIXI.Texture.from(textureDown);
 
         // Enable interactivity
-        this.button.interactive = true;
-        this.button.buttonMode = true;
+        this.interactive = true;
+        this.buttonMode = true;
 
         // If onClick function is provided, use it
-        if (onClick && typeof onClick === 'function'){
-            this.onClick = onClick;
-        } else {
-            this.onClick = () => {}; // Default function is none
-        }
+        this.onClick = onClick && typeof onClick === 'function' ? onClick : () => {};
 
         // Event listeners for button interactions
-        this.button
-            .on("pointerup", this.onPointerUp.bind(this))
+        this.on("pointerup", this.onPointerUp.bind(this))
             .on("pointerover", this.onPointerOver.bind(this))
             .on("pointerdown", this.onPointerDown.bind(this))
-            .on("pointerout", this.onPointerOut.bind(this))
-
-        // Button is returned for adding to stage
-        this.sprite = this.button;
+            .on("pointerout", this.onPointerOut.bind(this));
     }
 
-    // Button click handler
-    onPointerUp() {
-        // Execute the provided onClick function if available
-        this.onClick();
-        // Reset the texture to normal after clicking
-        this.button.texture = PIXI.Texture.from(this.textureNormal);
-    }
-
-    // Button hover (mouse over) handler
-    onPointerOver() {
-        this.button.texture = PIXI.Texture.from(this.textureOver);
-    }
-
-    // Button click (mouse down) handler
     onPointerDown() {
-        this.button.texture = PIXI.Texture.from(this.textureDown);
+        this.texture = this.textureDown;
     }
 
-    // Button mouse out handler
+    onPointerUp() {
+        this.texture = this.textureNormal;
+        this.onClick(); // Call the provided onClick function
+    }
+
+    onPointerOver() {
+        this.texture = this.textureOver;
+    }
+
     onPointerOut() {
-        this.button.texture = PIXI.Texture.from(this.textureNormal);
+        this.texture = this.textureNormal;
     }
 }

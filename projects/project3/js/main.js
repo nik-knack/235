@@ -19,9 +19,6 @@ let buttons;
 // custom font
 let pixelifySans;
 
-// cursor image sizes
-const cursorSize = 78;
-
 // Load all assets
 loadContent();
 

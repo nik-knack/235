@@ -32,6 +32,13 @@ ul {
     margin: 20px 15%;
 }
 
+ol {
+    display:flex;
+    flex-direction: column;
+    font-size: 2rem;
+    color: #150377;
+}
+
 #container {
     display: flex;
     flex-direction: column;

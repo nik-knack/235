@@ -1,6 +1,5 @@
 "use strict";
 
-
 const app = new PIXI.Application();
 
 // Game variables and settings
@@ -314,7 +313,6 @@ function startMeterDecrement() {
     }, 1000); // Decrement every second
 }
 
-
 // Check for game over (when any meter reaches 0)
 function checkGameOver() {
     if (hungerMeter === 0 || hygieneMeter === 0 || playMeter === 0) {
@@ -324,6 +322,7 @@ function checkGameOver() {
     }
 }
 
+// Starts game by setting the game scene and resetting the meters
 function startGame() {
     console.log("Starting game...");
     hungerMeter = hygieneMeter = playMeter = maxMeterValue; // Reset all meters
@@ -337,6 +336,3 @@ function startGame() {
 function startGameLoop() {
     app.ticker.add(checkGameOver); // Continuously check for game over
 }
-
-
-
